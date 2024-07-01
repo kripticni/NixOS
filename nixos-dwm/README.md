@@ -1,3 +1,5 @@
+FORK OF https://github.com/KawaiiKraken/polybar-dwm
+
 # polybar-dwm - dwm with polybar support*
 *patched to work with polybar-dwm-module which you can find here
  https://github.com/mihirlad55/polybar-dwm-module
@@ -15,6 +17,10 @@
 - swallow
 - anybar-togglebar (custom patch)
 - a few minor changes to prevent weird behaviour with polybar
+
+added by kripticni:
+- ewmh support
+- pertag patch
 
 # Dependencies
 ------------
