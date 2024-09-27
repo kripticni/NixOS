@@ -1,0 +1,17 @@
+palette:
+base00: #241b26# #11121d# #1e0528# #190134# #000000# #000000 ----
+base01: #2f2a3f# #151621# #1A092D# #392551# #231a40# #231a40 ---
+base02: #46354a# #43444f# #331354# #5A496E# #432d59# #432d59 --
+base03: #6c3cb2# #393a45# #320f55# #7B6D8B# #593380# #593380 -
+base04: #7e5f83# #1b1c27# #873582# #9C92A8# #00ff00# #7b43bf +
+base05: #eed5d9# #abb2bf# #ffeeff# #BDB6C5# #b08ae6# #b08ae6 ++
+base06: #d9c2c6# #555661# #ffeeff# #DEDAE2# #9045e6# #9045e6 +++
+base07: #e4ccd0# #2c2d38# #f8c0ff# #FEFFFF# #a366ff# #a366ff ++++
+base08: #877bb6# #a485dd# #00d9e9# #27D9D5# #a82ee6# #a82ee6 red
+base09: #de5b44# #a485dd# #aa00a3# #5BA2B6# #bb66cc# #bb66cc orange
+base0A: #a84a73# #7199ee# #955ae7# #8F6C97# #f29df2# #f29df2 yellow
+base0B: #c965bf# #d7A65f# #05cb0d# #C33678# #4595e6# #41d9bF green
+base0C: #9c5fce# #a485dd# #b900b1# #F80059# #40dfff# #40dfff aqua/cyan
+base0D: #6a9eb5# #95c561# #550068# #BD0152# #4136d9# #326ee6 blue
+base0E: #78a38f# #ee6d85# #8991bb# #82034C# #7e5ce6# #7e5ce6 purple
+base0F: #a3a079# #773440# #4d6fff# #470546# #a886bf# #a886bf brown

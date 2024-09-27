@@ -1,0 +1,89 @@
+palette:
+  base00: #241b26#
+  base01: #2f2a3f#
+  base02: #46354a#
+  base03: #6c3cb2#
+  base04: #7e5f83#
+  base05: #eed5d9#
+  base06: #d9c2c6#
+  base07: #e4ccd0#
+  base08: #877bb6#
+  base09: #de5b44#
+  base0A: #a84a73#
+  base0B: #c965bf#
+  base0C: #9c5fce#
+  base0D: #6a9eb5#
+  base0E: #78a38f#
+  base0F: #a3a079#
+
+palette:
+  base00: #11121d#
+  base01: #151621#
+  base02: #43444f#
+  base03: #393a45#
+  base04: #1b1c27#
+  base05: #abb2bf#
+  base06: #555661#
+  base07: #2c2d38#
+  base08: #a485dd#
+  base09: #a485dd#
+  base0A: #7199ee#
+  base0B: #d7A65f#
+  base0C: #a485dd#
+  base0D: #95c561#
+  base0E: #ee6d85#
+  base0F: #773440#
+
+palette:
+  base00: #1e0528#
+  base01: #1A092D#
+  base02: #331354#
+  base03: #320f55#
+  base04: #873582#
+  base05: #ffeeff#
+  base06: #ffeeff#
+  base07: #f8c0ff#
+  base08: #00d9e9#
+  base09: #aa00a3#
+  base0A: #955ae7#
+  base0B: #05cb0d#
+  base0C: #b900b1#
+  base0D: #550068#
+  base0E: #8991bb#
+  base0F: #4d6fff#
+
+palette:
+  base00: #190134#
+  base01: #392551#
+  base02: #5A496E#
+  base03: #7B6D8B#
+  base04: #9C92A8#
+  base05: #BDB6C5#
+  base06: #DEDAE2#
+  base07: #FEFFFF#
+  base08: #27D9D5#
+  base09: #5BA2B6#
+  base0A: #8F6C97#
+  base0B: #C33678#
+  base0C: #F80059#
+  base0D: #BD0152#
+  base0E: #82034C#
+  base0F: #470546#
+
+palette:
+  base00: #000000# #000000 ----
+  base01: #231a40# #231a40 ---
+  base02: #432d59# #432d59 --
+  base03: #593380# #593380 -
+  base04: #00ff00# #7b43bf +
+  base05: #b08ae6# #b08ae6 ++
+  base06: #9045e6# #9045e6 +++
+  base07: #a366ff# #a366ff ++++
+  base08: #a82ee6# #a82ee6 red
+  base09: #bb66cc# #bb66cc orange
+  base0A: #f29df2# #f29df2 yellow
+  base0B: #4595e6# #41d9bF green
+  base0C: #40dfff# #40dfff aqua/cyan
+  base0D: #4136d9# #326ee6 blue
+  base0E: #7e5ce6# #7e5ce6 purple
+  base0F: #a886bf# #a886bf brown

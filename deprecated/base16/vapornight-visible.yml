@@ -1,0 +1,22 @@
+system: #base16#
+name: #Vaporwave Night#
+author: #kripticni (https://github.com/kripticni)#
+variant: #dark#
+palette:
+    base00: #11121d#
+    base01: #1A092D#
+    base02: #331354#
+    base03: #593380#
+    base04: #7b43bf#
+    base05: #b08ae6#
+    base06: #555661#
+    base07: #f8c0ff#
+    base08: #00d9e9#
+    base09: #aa00a3#
+    base0A: #f29df2#
+    base0B: #c965bf#
+    base0C: #F80059#
+    base0D: #550068#
+    base0E: #82034c#
+    base0F: #470546#
+

@@ -1,0 +1,10 @@
+--- dwm.c
++++ dwm.c
+@@ -2225,6 +2306,7 @@ main(int argc, char *argv[])
+ 		die("pledge");
+ #endif /* __OpenBSD__ */
+ 	scan();
++	runautostart();
+ 	run();
+ 	cleanup();
+ 	XCloseDisplay(dpy);
