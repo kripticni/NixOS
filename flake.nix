@@ -18,10 +18,10 @@
     in {
       nixosConfigurations = {
         galahad = nixpkgs.lib.nixosSystem {
-	  extraSpecialArgs = {inherit inputs;};
+	specialArgs = {inherit inputs;};
           modules = [
             ./hosts/galahad/configuration.nix
-	    inputs.home-manager.nixosModule.default
+	    inputs.home-manager.nixosModules.default
           ];
         };
       };

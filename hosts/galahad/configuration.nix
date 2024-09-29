@@ -3,7 +3,9 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModule.default
+    ../common/core/fonts.nix
+    ../../users/aleksic/aleksic.nix
+    inputs.home-manager.nixosModules.default
   ];
 
   # bootloader, grub, since refind cant be managed declaratively
@@ -39,8 +41,7 @@
   #};
 
   networking.hostName = "galahad";
-  networking.networkmanager.enable =
-    true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Belgrade";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -63,7 +64,7 @@
       enable = true;
       package = pkgs.dwm.overrideAttrs (oldAttrs: {
         buildInputs = oldAttrs.buildInputs ++ [ pkgs.yajl ];
-        src = ./../../core/dwm;
+        src = ../../sys/dwm;
       });
     };
   };
@@ -73,27 +74,17 @@
   # Enable CUPS to print documents, not right now due to the CVE
   # services.printing.enable = true;
 
-  hardware.pulseaudio.enable = true;
-
-  users.users.aleksic = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "pulseaudio"
-      "audio"
-      "alsa"
-      "networkmanager"
-      "video"
-      "home-manager"
-      "nix-users"
-    ];
-    packages = with pkgs; [ brave vim git curl wget alacritty ];
-    initialPassword = "pw123";
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
   };
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
-    users."aleksic" = import ./home.nix;
+    users."aleksic" = import ../../users/aleksic/home.nix;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -102,6 +93,7 @@
 
   environment.systemPackages = with pkgs; [ ];
 
+  programs.zsh.enable = true;
   programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;

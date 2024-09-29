@@ -3,7 +3,10 @@
   home.homeDirectory = "/home/aleksic";
   home.stateVersion = "24.05";
 
-  home.packages = [ zsh ];
+  imports = [
+	 ../common/terminal/zsh.nix
+  ];
+  home.packages = [ ];
 
   home.file = {
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
@@ -26,6 +29,7 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
