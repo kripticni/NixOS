@@ -8,7 +8,10 @@
 
   nix = {
     package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -48,7 +51,7 @@
     # # Plasma
     qt5.full
     qtcreator
-  
+
     # # Terminal
     alacritty
     zsh
@@ -60,7 +63,7 @@
     neovim
     neovide
     zathura
-    
+
     # # Themes
     orchis-theme
     kdePackages.oxygen
@@ -101,7 +104,7 @@
     size = 32;
     gtk.enable = true;
     x11.enable = true;
-  }; 
+  };
 
   # GTK theming
   gtk = {
@@ -113,7 +116,7 @@
     theme.package = pkgs.whitesur-gtk-theme;
     theme.name = "Dark";
 
-    iconTheme.package =pkgs.whitesur-icon-theme;
+    iconTheme.package = pkgs.whitesur-icon-theme;
     iconTheme.name = "Dark";
   };
 
@@ -124,7 +127,7 @@
     style.name = "whitesur-kde";
     style.package = pkgs.whitesur-kde;
   };
-  
+
   xdg.mimeApps.defaultApplications = {
     "text/plain" = [ "neovide.desktop" ];
     "application/pdf" = [ "zathura.desktop" ];
@@ -162,14 +165,14 @@
 
     shellAliases = {
       ll = "ls -l";
-      ls="ls --color=auto";
-      dir="dir --color=auto";
-      vdir="vdir --color=auto";
-      grep="grep --color=auto";
-      fgrep="fgrep --color=auto";
-      egrep="egrep --color=auto";
-      diff="diff --color=auto";
-      ip="ip --color=auto";
+      ls = "ls --color=auto";
+      dir = "dir --color=auto";
+      vdir = "vdir --color=auto";
+      grep = "grep --color=auto";
+      fgrep = "fgrep --color=auto";
+      egrep = "egrep --color=auto";
+      diff = "diff --color=auto";
+      ip = "ip --color=auto";
     };
 
     history = {
@@ -192,13 +195,11 @@
     userEmail = "kripticno@gmail.com";
   };
 
-# Let Home Manager install and manage itself.
+  # Let Home Manager install and manage itself.
   programs.home-manager = {
     enable = true;
   };
 
-
-## TODO ADD MIMETYPES AND ADD GTK CONFIG
-
+  ## TODO ADD MIMETYPES AND ADD GTK CONFIG
 
 }

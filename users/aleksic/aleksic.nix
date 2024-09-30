@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   users.users.aleksic = {
@@ -13,7 +19,14 @@
       "home-manager"
       "nix-users"
     ];
-    packages = with pkgs; [ brave vim git curl wget alacritty ];
+    packages = with pkgs; [
+      brave
+      vim
+      git
+      curl
+      wget
+      alacritty
+    ];
     shell = pkgs.zsh;
     initialPassword = "pw123";
   };

@@ -5,10 +5,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -17,7 +16,8 @@
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable =
+    true; # Easiest to use and most distros use this by default.
   nix.settings.stalled-download-timeout = 99999999;
 
   # Set your time zone.
@@ -32,37 +32,37 @@
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
-  #  useXkbConfig = true; # use xkb.options in tty.
+    #  useXkbConfig = true; # use xkb.options in tty.
   };
-  fonts.fontDir.enable = true; 
+  fonts.fontDir.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver = {
-	enable = true;
-	xkb.layout = "us";
+    enable = true;
+    xkb.layout = "us";
 
-	displayManager = {
-		sddm.enable = true;
-		#sddm.theme = "${import ./sddm-ed-theme.nix { inherit pkgs; }}";
-		#sddm.theme = pkgs.sddm-sugar-dark;
-		#sddm.theme = "${import ./sugar-cd-theme.nix { inherit pkgs; }}";
-		#sddm.theme = "${(pkgs.fetchFromGitHub {
-		#	owner = "Kangie";
-		#	repo = "sddm-sugar-candy";
-		#	rev = "d31dbf58286ecdcd3a490cd0c9d9ba2f15c26920";
-		#	hash = "sha256-HMlzUyRvXvzjaeq4FDxsHZga1zsn1w2Ln7SpctqjWk8=";
-		#})}";
-		defaultSession = "none+dwm";
-	};
+    displayManager = {
+      sddm.enable = true;
+      #sddm.theme = "${import ./sddm-ed-theme.nix { inherit pkgs; }}";
+      #sddm.theme = pkgs.sddm-sugar-dark;
+      #sddm.theme = "${import ./sugar-cd-theme.nix { inherit pkgs; }}";
+      #sddm.theme = "${(pkgs.fetchFromGitHub {
+      #	owner = "Kangie";
+      #	repo = "sddm-sugar-candy";
+      #	rev = "d31dbf58286ecdcd3a490cd0c9d9ba2f15c26920";
+      #	hash = "sha256-HMlzUyRvXvzjaeq4FDxsHZga1zsn1w2Ln7SpctqjWk8=";
+      #})}";
+      defaultSession = "none+dwm";
+    };
 
-		windowManager.dwm = {
-		enable = true;
-		package = pkgs.dwm.overrideAttrs (oldAttrs: {
-				buildInputs = oldAttrs.buildInputs ++ [ pkgs.yajl ];
-				src = ./dwm;
-		});
-	};
-};
+    windowManager.dwm = {
+      enable = true;
+      package = pkgs.dwm.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [ pkgs.yajl ];
+        src = ./dwm;
+      });
+    };
+  };
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -78,11 +78,11 @@
   # hardware.pulseaudio.enable = true;
   # hardware.pulseaudio.package = pkgs.pulseaudioFull;
   # OR
-   services.pipewire = {
-     enable = true;
-     pulse.enable = true;
-     alsa.enable = true;
-   };
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+    alsa.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -93,148 +93,144 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.aleksic = {
     isNormalUser = true;
-    extraGroups = [ "pulseaudio" "audio" "alsa" "networkmanager" "wheel" "sudo" "video" "audio" "home-manager" "nix-users"]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "pulseaudio"
+      "audio"
+      "alsa"
+      "networkmanager"
+      "wheel"
+      "sudo"
+      "video"
+      "audio"
+      "home-manager"
+      "nix-users"
+    ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-    	# # Firmware
-	sof-firmware
-	
-        # # You can get this on any distro and it doesnt need configuring
-	libreoffice
+      # # Firmware
+      sof-firmware
 
-	# # Virtual envs
-	distrobox
-	podman
-	lilipod
-	docker
+      # # You can get this on any distro and it doesnt need configuring
+      libreoffice
 
-	dive
-	podman-tui
-	docker-compose
-	podman-compose
+      # # Virtual envs
+      distrobox
+      podman
+      lilipod
+      docker
 
+      dive
+      podman-tui
+      docker-compose
+      podman-compose
 
-	# # Comms
-	discord
-    	discordo
-    	spotify
-    	spotifyd
-	telegram-desktop
-	viber
+      # # Comms
+      discord
+      discordo
+      spotify
+      spotifyd
+      telegram-desktop
+      viber
 
-	# # Build things that dont need configs, and also compilers
-    	meson
-	ninja
-	gdb
-	clang	
-	libgcc
-	gcc
-	rustup
-	cmake
-	pkg-config
+      # # Build things that dont need configs, and also compilers
+      meson
+      ninja
+      gdb
+      clang
+      libgcc
+      gcc
+      rustup
+      cmake
+      pkg-config
 
-	# # Everyday utils that dont need configs
-	cryptsetup
-	luksmeta
-    	gnumake
-	unzip
-	zip
-	gnutar
-	wget
-    	aria2
-	ripgrep
-    	ripgrep-all
+      # # Everyday utils that dont need configs
+      cryptsetup
+      luksmeta
+      gnumake
+      unzip
+      zip
+      gnutar
+      wget
+      aria2
+      ripgrep
+      ripgrep-all
 
-	# # Python, altho im not sure if this is how its configured
-	(python312Full.withPackages (ps: [
-		ps.pkgconfig
-		ps.requests
-		ps.pip
-	]))
-	jdk
-	jre8
-	pipx
+      # # Python, altho im not sure if this is how its configured
+      (python312Full.withPackages (ps: [ ps.pkgconfig ps.requests ps.pip ]))
+      jdk
+      jre8
+      pipx
 
+      # # Everyday apps that I use and dont config
+      brave
+      firefox
+      vlc
+      # gnome.eog, moved to home-manager
+      # gthumb, moved to home-manager
+      obsidian
+      syncthing
+      virtualbox
+      scrcpy
+      gimp
+      drawing
 
-	# # Everyday apps that I use and dont config
-	brave
-	firefox
-	vlc
-    	# gnome.eog, moved to home-manager
-    	# gthumb, moved to home-manager
-	obsidian
-	syncthing
-	virtualbox
-	scrcpy
-	gimp
-	drawing
+      # # Nice utils I'll start using
+      bat
+      delta
+      lsd
 
-	# # Nice utils I'll start using
-	bat
-	delta
-	lsd
+      spotdl
+      lazygit
 
-	spotdl
-	lazygit
+      # # Games, and wine, but doubt ill actually use any of this, its nice to have just in case tho
+      protonplus
+      lutris
+      steam
+      heroic
+      gogdl
+      wine
 
-	# # Games, and wine, but doubt ill actually use any of this, its nice to have just in case tho
-	protonplus
-	lutris
-	steam
-	heroic
-	gogdl
-	wine
-
-	# # A LIST OF RUST THINGS I'D LIKE, for when i start learning rust
-    	# # cargo
-    	# # clippy
-    	# # rustfmt
-  	# # rustup
-	# # evcxr
-    	# # bacon
-    	# # sccache
-    	# # uutils-coreutils
-    	# # gitui
-    	# # cargo-info
-    	# # speedtest-rs
-    	# # wiki-tui
+      # # A LIST OF RUST THINGS I'D LIKE, for when i start learning rust
+      # # cargo
+      # # clippy
+      # # rustfmt
+      # # rustup
+      # # evcxr
+      # # bacon
+      # # sccache
+      # # uutils-coreutils
+      # # gitui
+      # # cargo-info
+      # # speedtest-rs
+      # # wiki-tui
     ];
-    initialPassword="pw123";
+    initialPassword = "pw123";
   };
 
   virtualisation.containers.enable = true;
   virtualisation = {
-  	podman = {
-		enable = true;
-		dockerCompat = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
 
-		defaultNetwork.settings.dns_enabled = true;
-	};
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  nixpkgs.config.permittedInsecurePackages = [
-	"openssl-1.1.1w"
-	"python-2.7.18.8"
-	];
+  nixpkgs.config.permittedInsecurePackages =
+    [ "openssl-1.1.1w" "python-2.7.18.8" ];
   nixpkgs.config.allowUnfreePredicate = _: true;
   nixpkgs.overlays = [
-	(final: prev: {
-		nginxStable = prev.nginxStable.override { openssl = pkgs.openssl_3_3; };
-	})
+    (final: prev: {
+      nginxStable = prev.nginxStable.override { openssl = pkgs.openssl_3_3; };
+    })
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nix.settings.allowed-users = [ 
-  	"aleksic" 
-  	"@wheel" 
-  ];
-  nix.settings.trusted-users = [ 
-  	"aleksic"
-  	"@wheel" 
-  ];
+  nix.settings.allowed-users = [ "aleksic" "@wheel" ];
+  nix.settings.trusted-users = [ "aleksic" "@wheel" ];
 
   environment.systemPackages = with pkgs; [
     # # Just sys utils for ricing
@@ -280,7 +276,6 @@
     libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qtsvg
 
-
     # # Xorg
     xcbuild
     xcbuildHook
@@ -323,7 +318,7 @@
     rpm
     dpkg
     libselinux
-    libsepol    
+    libsepol
 
     # # Other libraries
     yajl
@@ -336,8 +331,6 @@
   ];
 
   environment.shells = with pkgs; [ zsh bash ];
-  
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

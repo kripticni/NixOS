@@ -1,13 +1,6 @@
-{
-  pkgs,
-  username,
-  host,
-  ...
-}:
-let
-  inherit (import ./variables.nix) gitUsername gitEmail;
-in
-{
+{ pkgs, username, host, ... }:
+let inherit (import ./variables.nix) gitUsername gitEmail;
+in {
   # Home Manager Settings
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
@@ -82,19 +75,14 @@ in
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
   };
   qt = {
     enable = true;
     style.name = "adwaita-dark";
     platformTheme.name = "gtk3";
   };
-
 
   # Scripts
   home.packages = [
@@ -122,7 +110,7 @@ in
           after_sleep_cmd = "hyprctl dispatch dpms on";
           ignore_dbus_inhibit = false;
           lock_cmd = "hyprlock";
-          };
+        };
         listener = [
           {
             timeout = 900;
@@ -142,9 +130,7 @@ in
     gh.enable = true;
     btop = {
       enable = true;
-      settings = {
-        vim_keys = true;
-      };
+      settings = { vim_keys = true; };
     };
     kitty = {
       enable = true;
@@ -162,10 +148,10 @@ in
         inactive_tab_font_style bold
       '';
     };
-     starship = {
-            enable = true;
-            package = pkgs.starship;
-     };
+    starship = {
+      enable = true;
+      package = pkgs.starship;
+    };
     bash = {
       enable = true;
       enableCompletion = true;
@@ -183,9 +169,12 @@ in
       shellAliases = {
         sv = "sudo nvim";
         fr = "nh os switch --hostname ${host} /home/${username}/zaneyos";
-        fu = "nh os switch --hostname ${host} --update /home/${username}/zaneyos";
-        zu = "sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)";
-        ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
+        fu =
+          "nh os switch --hostname ${host} --update /home/${username}/zaneyos";
+        zu =
+          "sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)";
+        ncg =
+          "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
         v = "nvim";
         cat = "bat";
         ls = "eza --icons";
@@ -204,40 +193,34 @@ in
           hide_cursor = true;
           no_fade_in = false;
         };
-        background = [
-          {
-            path = "/home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg";
-            blur_passes = 3;
-            blur_size = 8;
-          }
-        ];
-        image = [
-          {
-            path = "/home/${username}/.config/face.jpg";
-            size = 150;
-            border_size = 4;
-            border_color = "rgb(0C96F9)";
-            rounding = -1; # Negative means circle
-            position = "0, 200";
-            halign = "center";
-            valign = "center";
-          }
-        ];
-        input-field = [
-          {
-            size = "200, 50";
-            position = "0, -80";
-            monitor = "";
-            dots_center = true;
-            fade_on_empty = false;
-            font_color = "rgb(CFE6F4)";
-            inner_color = "rgb(657DC2)";
-            outer_color = "rgb(0D0E15)";
-            outline_thickness = 5;
-            placeholder_text = "Password...";
-            shadow_passes = 2;
-          }
-        ];
+        background = [{
+          path = "/home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg";
+          blur_passes = 3;
+          blur_size = 8;
+        }];
+        image = [{
+          path = "/home/${username}/.config/face.jpg";
+          size = 150;
+          border_size = 4;
+          border_color = "rgb(0C96F9)";
+          rounding = -1; # Negative means circle
+          position = "0, 200";
+          halign = "center";
+          valign = "center";
+        }];
+        input-field = [{
+          size = "200, 50";
+          position = "0, -80";
+          monitor = "";
+          dots_center = true;
+          fade_on_empty = false;
+          font_color = "rgb(CFE6F4)";
+          inner_color = "rgb(657DC2)";
+          outer_color = "rgb(0D0E15)";
+          outline_thickness = 5;
+          placeholder_text = "Password...";
+          shadow_passes = 2;
+        }];
       };
     };
   };

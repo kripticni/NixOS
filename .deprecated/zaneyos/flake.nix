@@ -13,18 +13,16 @@
     };
   };
 
-  outputs =
-    { nixpkgs, home-manager, stylix, ... }@inputs:
+  outputs = { nixpkgs, home-manager, stylix, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "galahad";
       username = "aleksic";
-    in
-    {
+    in {
       nixosConfigurations = {
         "${host}" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-	    inherit system;
+            inherit system;
             inherit inputs;
             inherit username;
             inherit host;

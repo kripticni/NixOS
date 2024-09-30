@@ -1,8 +1,6 @@
-{ pkgs, username, host, ...}:
-let
-  inherit (import ./variables.nix) gitUsername gitEmail;
-in
-{
+{ pkgs, username, host, ... }:
+let inherit (import ./variables.nix) gitUsername gitEmail;
+in {
   # Home Manager Settings
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
@@ -62,19 +60,14 @@ in
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
   };
   qt = {
     enable = true;
     style.name = "adwaita-dark";
     platformTheme.name = "gtk3";
   };
-
 
   # Scripts
   home.packages = [
@@ -116,7 +109,7 @@ in
     # # Plasma
     pkgs.qt5.full
     pkgs.qtcreator
-  
+
     # # Terminal
     pkgs.alacritty
     pkgs.zsh
@@ -127,7 +120,7 @@ in
     pkgs.vim
     pkgs.neovide
     pkgs.zathura
-    
+
     # # Themes
     pkgs.orchis-theme
     pkgs.kdePackages.oxygen
@@ -152,27 +145,23 @@ in
     pkgs.noto-fonts-cjk-sans
   ];
 
- #home.pointerCursor = {
- #  name = "phinger-cursors-dark";
- #  package = pkgs.phinger-cursors;
- #  size = 32;
- #  gtk.enable = true;
- #  x11.enable = true;
- #}; 
+  #home.pointerCursor = {
+  #  name = "phinger-cursors-dark";
+  #  package = pkgs.phinger-cursors;
+  #  size = 32;
+  #  gtk.enable = true;
+  #  x11.enable = true;
+  #}; 
 
   programs = {
     gh.enable = true;
     btop = {
       enable = true;
-      settings = {
-        vim_keys = true;
-      };
+      settings = { vim_keys = true; };
     };
   };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  home.sessionVariables = { EDITOR = "nvim"; };
 
   programs.zsh = {
     enable = true;
@@ -185,14 +174,14 @@ in
 
     shellAliases = {
       ll = "ls -l";
-      ls="ls --color=auto";
-      dir="dir --color=auto";
-      vdir="vdir --color=auto";
-      grep="grep --color=auto";
-      fgrep="fgrep --color=auto";
-      egrep="egrep --color=auto";
-      diff="diff --color=auto";
-      ip="ip --color=auto";
+      ls = "ls --color=auto";
+      dir = "dir --color=auto";
+      vdir = "vdir --color=auto";
+      grep = "grep --color=auto";
+      fgrep = "fgrep --color=auto";
+      egrep = "egrep --color=auto";
+      diff = "diff --color=auto";
+      ip = "ip --color=auto";
     };
 
     history = {
@@ -207,12 +196,7 @@ in
     useTheme = "night-owl";
   };
 
-
-# Let Home Manager install and manage itself.
-  programs.home-manager = {
-    enable = true;
-  };
-
-
+  # Let Home Manager install and manage itself.
+  programs.home-manager = { enable = true; };
 
 }

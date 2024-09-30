@@ -1,15 +1,6 @@
-{
-  config,
-  pkgs,
-  host,
-  username,
-  options,
-  ...
-}:
-let
-  inherit (import ./variables.nix) keyboardLayout;
-in
-{
+{ config, pkgs, host, username, options, ... }:
+let inherit (import ./variables.nix) keyboardLayout;
+in {
   imports = [
     ./hardware.nix
     ./users.nix
@@ -23,13 +14,11 @@ in
     # Kernel
     # kernelPackages = pkgs.linuxPackages_6_6_42;
     # Needed For Some Steam Games
-    kernel.sysctl = {
-      "vm.max_map_count" = 2147483642;
-    };
+    kernel.sysctl = { "vm.max_map_count" = 2147483642; };
     # Bootloader.
     loader = {
       timeout = 0;
-      efi = { 
+      efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/EFI/";
       };
@@ -50,8 +39,8 @@ in
       interpreter = "${pkgs.appimage-run}/bin/appimage-run";
       recognitionType = "magic";
       offset = 0;
-      mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-      magicOrExtension = ''\x7fELF....AI\x02'';
+      mask = "\\xff\\xff\\xff\\xff\\x00\\x00\\x00\\x00\\xff\\xff\\xff";
+      magicOrExtension = "\\x7fELF....AI\\x02";
     };
     plymouth = {
       enable = true;
@@ -109,10 +98,10 @@ in
       size = 24;
     };
 
-    opacity = { 
+    opacity = {
       terminal = 0.9;
-      desktop =  0.95;
-      popups =   0.95;
+      desktop = 0.95;
+      popups = 0.95;
     };
 
     fonts = {
@@ -154,7 +143,8 @@ in
   # Enable networking
   networking.networkmanager.enable = true;
   networking.hostName = host;
-  networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+  networking.timeServers = options.networking.timeServers.default
+    ++ [ "pool.ntp.org" ];
 
   # Set your time zone.
   time.timeZone = "Europe/Belgrade";
@@ -193,27 +183,22 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-	"openssl-1.1.1w"
-	"python-2.7.18.8"
-	];
+  nixpkgs.config.permittedInsecurePackages =
+    [ "openssl-1.1.1w" "python-2.7.18.8" ];
   nixpkgs.config.allowUnfreePredicate = _: true;
   nixpkgs.overlays = [
-	(final: prev: {
-		nginxStable = prev.nginxStable.override { openssl = pkgs.openssl_3_3; };
-	})
+    (final: prev: {
+      nginxStable = prev.nginxStable.override { openssl = pkgs.openssl_3_3; };
+    })
   ];
 
-
-  users = {
-    mutableUsers = true;
-  };
+  users = { mutableUsers = true; };
 
   environment.systemPackages = with pkgs; [
     # # Sys-things for ricing
     polybarFull
     # rofi
-    picom-pijulius 
+    picom-pijulius
     vim
 
     # # Firmware
@@ -318,9 +303,9 @@ in
     gimp
     pavucontrol
     tree
-    
+
     # # Fonts
-    fontconfig 
+    fontconfig
 
     fira-code-nerdfont
     fira-code
@@ -338,7 +323,7 @@ in
     rpm
     dpkg
     libselinux
-    libsepol    
+    libsepol
 
     # # Other libraries
     yajl
@@ -370,19 +355,17 @@ in
   services = {
     xserver = {
       enable = true;
-      xkb = {
-        layout = "${keyboardLayout}";
-      };
+      xkb = { layout = "${keyboardLayout}"; };
       displayManager = {
         sddm.enable = true;
         defaultSession = "none+dwm";
       };
       windowManager.dwm = {
         enable = true;
-        package = pkgs.dwm.overrideAttrs(oldAttrs: {
-            buildInputs = oldAttrs.buildInputs ++ [ pkgs.yajl ];
-            src = ./dwm;
-          });
+        package = pkgs.dwm.overrideAttrs (oldAttrs: {
+          buildInputs = oldAttrs.buildInputs ++ [ pkgs.yajl ];
+          src = ./dwm;
+        });
       };
     };
     libinput.enable = true;
@@ -449,10 +432,7 @@ in
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+      experimental-features = [ "nix-command" "flakes" ];
     };
     gc = {
       automatic = true;

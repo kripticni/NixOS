@@ -1,17 +1,8 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
-let
-  cfg = config.drivers.nvidia;
-in
-{
-  options.drivers.nvidia = {
-    enable = mkEnableOption "Enable Nvidia Drivers";
-  };
+let cfg = config.drivers.nvidia;
+in {
+  options.drivers.nvidia = { enable = mkEnableOption "Enable Nvidia Drivers"; };
 
   config = mkIf cfg.enable {
     services.xserver.videoDrivers = [ "nvidia" ];

@@ -5,10 +5,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -17,7 +16,8 @@
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable =
+    true; # Easiest to use and most distros use this by default.
   nix.settings.stalled-download-timeout = 99999999;
 
   # Set your time zone.
@@ -32,27 +32,27 @@
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
-  #  useXkbConfig = true; # use xkb.options in tty.
+    #  useXkbConfig = true; # use xkb.options in tty.
   };
 
   # Enable the X11 windowing system.
   services.xserver = {
-	enable = true;
-	xkb.layout = "us";
+    enable = true;
+    xkb.layout = "us";
 
-	displayManager = {
-		lightdm.enable = true;
-		defaultSession = "none+dwm";
-	};
+    displayManager = {
+      lightdm.enable = true;
+      defaultSession = "none+dwm";
+    };
 
-		windowManager.dwm = {
-		enable = true;
-		package = pkgs.dwm.overrideAttrs (oldAttrs: {
-				buildInputs = oldAttrs.buildInputs ++ [ pkgs.yajl ];
-				src = ./dwm;
-		});
-	};
-};
+    windowManager.dwm = {
+      enable = true;
+      package = pkgs.dwm.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [ pkgs.yajl ];
+        src = ./dwm;
+      });
+    };
+  };
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -75,115 +75,114 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.aleksic = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" "sudo" "video" "audio" "home-manager" "nix-users"]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "sudo"
+      "video"
+      "audio"
+      "home-manager"
+      "nix-users"
+    ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-        # # You can get this on any distro and it doesnt need configuring
-	libreoffice
+      # # You can get this on any distro and it doesnt need configuring
+      libreoffice
 
-	# # Comms
-	discord
-    	discordo
-    	spotify
-    	spotifyd
-	telegram-desktop
-	viber
+      # # Comms
+      discord
+      discordo
+      spotify
+      spotifyd
+      telegram-desktop
+      viber
 
-	# # Build things that dont need configs, and also compilers
-    	meson
-	ninja
-	gdb
-	clang	
-	libgcc
-	rustup
-	cmake
-	pkg-config
+      # # Build things that dont need configs, and also compilers
+      meson
+      ninja
+      gdb
+      clang
+      libgcc
+      rustup
+      cmake
+      pkg-config
 
-	# # Everyday utils that dont need configs
-    	gnumake
-	unzip
-	zip
-	gnutar
-	wget
-    	aria2
-	ripgrep
-    	ripgrep-all
+      # # Everyday utils that dont need configs
+      gnumake
+      unzip
+      zip
+      gnutar
+      wget
+      aria2
+      ripgrep
+      ripgrep-all
 
-	# # Python, altho im not sure if this is how its configured
-    	(python312Full.withPackages(python312Packges: [
-    	python312Packages.pkgconfig
-    	python312Packages.requests
-    	python312Packages.pip
-    	]))
-	pipx
+      # # Python, altho im not sure if this is how its configured
+      (python312Full.withPackages (python312Packges: [
+        python312Packages.pkgconfig
+        python312Packages.requests
+        python312Packages.pip
+      ]))
+      pipx
 
+      # # Everyday apps that I use and dont config
+      brave
+      vlc
+      gnome.eog
+      gthumb
+      zathura
+      obsidian
+      syncthing
+      virtualbox
+      scrcpy
+      gimp
+      drawing
 
-	# # Everyday apps that I use and dont config
-	brave
-	vlc
-    	gnome.eog
-    	gthumb
-    	zathura
-	obsidian
-	syncthing
-	virtualbox
-	scrcpy
-	gimp
-	drawing
+      # # Nice utils I'll start using
+      bat
+      delta
+      lsd
 
-	# # Nice utils I'll start using
-	bat
-	delta
-	lsd
+      spotdl
+      lazygit
 
-	spotdl
-	lazygit
+      # # Games, and wine, but doubt ill actually use any of this, its nice to have just in case tho
+      protonplus
+      lutris
+      steam
+      heroic
+      gogdl
+      wine
 
-	# # Games, and wine, but doubt ill actually use any of this, its nice to have just in case tho
-	protonplus
-	lutris
-	steam
-	heroic
-	gogdl
-	wine
-
-	# # A LIST OF RUST THINGS I'D LIKE, for when i start learning rust
-    	# # cargo
-    	# # clippy
-    	# # rustfmt
-  	# # rustup
-	# # evcxr
-    	# # bacon
-    	# # sccache
-    	# # uutils-coreutils
-    	# # gitui
-    	# # cargo-info
-    	# # speedtest-rs
-    	# # wiki-tui
+      # # A LIST OF RUST THINGS I'D LIKE, for when i start learning rust
+      # # cargo
+      # # clippy
+      # # rustfmt
+      # # rustup
+      # # evcxr
+      # # bacon
+      # # sccache
+      # # uutils-coreutils
+      # # gitui
+      # # cargo-info
+      # # speedtest-rs
+      # # wiki-tui
     ];
-    initialPassword="pw123";
+    initialPassword = "pw123";
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  nixpkgs.config.permittedInsecurePackages = [
-	"openssl-1.1.1w"
-	"python-2.7.18.8"
-	];
+  nixpkgs.config.permittedInsecurePackages =
+    [ "openssl-1.1.1w" "python-2.7.18.8" ];
   nixpkgs.config.allowUnfreePredicate = _: true;
   nixpkgs.overlays = [
-	(final: prev: {
-		nginxStable = prev.nginxStable.override { openssl = pkgs.openssl_3_3; };
-	})
+    (final: prev: {
+      nginxStable = prev.nginxStable.override { openssl = pkgs.openssl_3_3; };
+    })
   ];
 
-  nix.settings.allowed-users = [ 
-  	"aleksic" 
-  	"@wheel" 
-  ];
-  nix.settings.trusted-users = [ 
-  	"aleksic"
-  	"@wheel" 
-  ];
+  nix.settings.allowed-users = [ "aleksic" "@wheel" ];
+  nix.settings.trusted-users = [ "aleksic" "@wheel" ];
 
   environment.systemPackages = with pkgs; [
     # # Just sys utils for ricing
@@ -237,7 +236,7 @@
     rpm
     dpkg
     libselinux
-    libsepol    
+    libsepol
 
     # # Other libraries
     yajl

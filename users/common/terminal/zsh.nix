@@ -1,4 +1,4 @@
-{ configs, pkgs, ...}:
+{ configs, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -6,7 +6,7 @@
     oh-my-posh
   ];
 
-    programs.zsh = {
+  programs.zsh = {
     enable = true;
     autocd = true;
 
@@ -17,14 +17,14 @@
 
     shellAliases = {
       ll = "ls -l";
-      ls="ls --color=auto";
-      dir="dir --color=auto";
-      vdir="vdir --color=auto";
-      grep="grep --color=auto";
-      fgrep="fgrep --color=auto";
-      egrep="egrep --color=auto";
-      diff="diff --color=auto";
-      ip="ip --color=auto";
+      ls = "ls --color=auto";
+      dir = "dir --color=auto";
+      vdir = "vdir --color=auto";
+      grep = "grep --color=auto";
+      fgrep = "fgrep --color=auto";
+      egrep = "egrep --color=auto";
+      diff = "diff --color=auto";
+      ip = "ip --color=auto";
     };
 
     history = {

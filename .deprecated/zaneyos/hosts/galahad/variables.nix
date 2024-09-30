@@ -10,7 +10,8 @@
   clock24h = false;
 
   # Program Options
-  browser = "brave"; # Set Default Browser (google-chrome-stable for google-chrome)
+  browser =
+    "brave"; # Set Default Browser (google-chrome-stable for google-chrome)
   terminal = "alacritty"; # Set Default System Terminal
   keyboardLayout = "us";
 }

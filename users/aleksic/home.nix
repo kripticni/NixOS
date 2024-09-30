@@ -1,11 +1,15 @@
-{ config, pkgs, inputs, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   home.username = "aleksic";
   home.homeDirectory = "/home/aleksic";
   home.stateVersion = "24.05";
 
-  imports = [
-	 ../common/terminal/zsh.nix
-  ];
+  imports = [ ../common/terminal/zsh.nix ];
   home.packages = [ ];
 
   home.file = {
@@ -29,7 +33,6 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
-
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

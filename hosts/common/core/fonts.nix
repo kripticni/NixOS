@@ -1,5 +1,4 @@
-{ config, libs, pkgs, inputs, ... }:
-{
+{ config, libs, pkgs, inputs, ... }: {
   fonts.packages = with pkgs; [
     material-icons
     material-symbols

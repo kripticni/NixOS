@@ -9,23 +9,29 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixvim, nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       nixosConfigurations = {
         galahad = nixpkgs.lib.nixosSystem {
-	specialArgs = {inherit inputs;};
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/galahad/configuration.nix
-	    inputs.home-manager.nixosModules.default
+            inputs.home-manager.nixosModules.default
+            inputs.nixvim.nixosModules.nixvim
           ];
         };
       };
 
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt;
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
     };
 }

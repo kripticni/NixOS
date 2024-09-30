@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ../common/core/fonts.nix
     ../../users/aleksic/aleksic.nix
+    ../common/core/nixvim.nix
     inputs.home-manager.nixosModules.default
   ];
 
@@ -91,7 +92,7 @@
   nix.settings.allowed-users = [ "aleksic" "@wheel" ];
   nix.settings.trusted-users = [ "aleksic" "@wheel" ];
 
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [ pavucontrol ];
 
   programs.zsh.enable = true;
   programs.mtr.enable = true;
