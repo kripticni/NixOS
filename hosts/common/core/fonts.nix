@@ -7,13 +7,17 @@
     unifont_upper
     fira-code-nerdfont
     fira-code
+    fira
+    hack-font
     roboto-mono
     noto-fonts
     noto-fonts-color-emoji
     noto-fonts-monochrome-emoji
     noto-fonts-cjk-sans
+    dejavu_fonts
   ];
 
   fonts.fontDir.enable = true;
   fonts.fontconfig.enable = true;
+  #fonts.fontconfig.enableProfileFonts = true;
 }

@@ -2,10 +2,16 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -16,8 +22,7 @@
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable =
-    true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   nix.settings.stalled-download-timeout = 99999999;
 
   # Set your time zone.
@@ -43,6 +48,7 @@
 
     displayManager = {
       sddm.enable = true;
+      sddm.theme = pkgs.sddm-astronaut;
       #sddm.theme = "${import ./sddm-ed-theme.nix { inherit pkgs; }}";
       #sddm.theme = pkgs.sddm-sugar-dark;
       #sddm.theme = "${import ./sugar-cd-theme.nix { inherit pkgs; }}";
@@ -155,7 +161,11 @@
       ripgrep-all
 
       # # Python, altho im not sure if this is how its configured
-      (python312Full.withPackages (ps: [ ps.pkgconfig ps.requests ps.pip ]))
+      (python312Full.withPackages (ps: [
+        ps.pkgconfig
+        ps.requests
+        ps.pip
+      ]))
       jdk
       jre8
       pipx
@@ -218,8 +228,10 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  nixpkgs.config.permittedInsecurePackages =
-    [ "openssl-1.1.1w" "python-2.7.18.8" ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1w"
+    "python-2.7.18.8"
+  ];
   nixpkgs.config.allowUnfreePredicate = _: true;
   nixpkgs.overlays = [
     (final: prev: {
@@ -227,10 +239,19 @@
     })
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
-  nix.settings.allowed-users = [ "aleksic" "@wheel" ];
-  nix.settings.trusted-users = [ "aleksic" "@wheel" ];
+  nix.settings.allowed-users = [
+    "aleksic"
+    "@wheel"
+  ];
+  nix.settings.trusted-users = [
+    "aleksic"
+    "@wheel"
+  ];
 
   environment.systemPackages = with pkgs; [
     # # Just sys utils for ricing
@@ -330,7 +351,10 @@
     firefox
   ];
 
-  environment.shells = with pkgs; [ zsh bash ];
+  environment.shells = with pkgs; [
+    zsh
+    bash
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

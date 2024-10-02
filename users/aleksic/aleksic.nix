@@ -26,6 +26,8 @@
       curl
       wget
       alacritty
+      phinger-cursors
+      efibootmgr
     ];
     shell = pkgs.zsh;
     initialPassword = "pw123";

@@ -14,20 +14,33 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixvim, nixpkgs, home-manager, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixvim,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    in
+    {
       nixosConfigurations = {
         galahad = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
             ./hosts/galahad/configuration.nix
             inputs.home-manager.nixosModules.default
             inputs.nixvim.nixosModules.nixvim
+            inputs.stylix.nixosModules.stylix
           ];
         };
       };
