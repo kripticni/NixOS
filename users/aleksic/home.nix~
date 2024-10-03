@@ -10,9 +10,7 @@
   home.stateVersion = "24.05";
 
   imports = [ ../common/terminal/zsh.nix ];
-  home.packages = with pkgs; [
-    fastfetch
-  ];
+  home.packages = with pkgs; [ ];
 
   home.file = {
     ".dwm/autostart.sh".source = ../../assets/scripts/autostart.sh;

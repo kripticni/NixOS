@@ -28,7 +28,6 @@
       alacritty
       phinger-cursors
       efibootmgr
-      tree
     ];
     shell = pkgs.zsh;
     initialPassword = "pw123";

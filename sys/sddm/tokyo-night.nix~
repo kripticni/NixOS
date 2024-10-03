@@ -2,12 +2,11 @@
 { pkgs }:
 
 let
-  #imgLink = "https://wallpapercave.com/uwp/uwp4516635.png";
-  imgLink = "https://i.ibb.co/Jn5nqcS/gnu-linux-1.png";
+  imgLink = "https://wallpapercave.com/uwp/uwp4516635.png";
 
   image = pkgs.fetchurl {
     url = imgLink;
-    sha256 = "1iaj2yfmqjmxap1553nnkm40mfd0kahqdgp16n6k5zl0lvz6w46f";
+    hash = "sha256-fPMxnoTfRyo1MJfoCVOErcvFLouxSwXB6vjaB/vEZjc=";
     curlOptsList = [ "-HUser-Agent: Wget/1.21.4" ];
   };
 in
