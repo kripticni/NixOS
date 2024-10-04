@@ -43,7 +43,24 @@
       telescope.enable = true;
       web-devicons.enable = true;
       nix.enable = true;
-      treesitter.enable = true;
+      which-key.enable = true;
+      treesitter = {
+        enable = true;
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          bash
+          lua
+          python
+          rust
+          nix
+          c
+          nasm
+          asm
+          regex
+        ];
+        nixGrammars = true;
+        settings.highlight.enable = true;
+        settings.indent.enable = true;
+      };
       harpoon = {
         enable = true;
         enableTelescope = true;

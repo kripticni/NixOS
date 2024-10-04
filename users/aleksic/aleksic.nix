@@ -26,11 +26,17 @@
       curl
       wget
       alacritty
-      phinger-cursors
       efibootmgr
       tree
     ];
     shell = pkgs.zsh;
     initialPassword = "pw123";
+  };
+
+  home-manager = {
+    extraSpecialArgs = {
+      inherit inputs;
+    };
+    users."aleksic" = import ./home.nix;
   };
 }

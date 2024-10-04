@@ -10,6 +10,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./stylix.nix
     ../common/core/fonts.nix
     ../../users/aleksic/aleksic.nix
     ../common/core/nixvim.nix
@@ -46,7 +47,6 @@
     };
     grub = {
       enable = true;
-      version = 2;
       efiSupport = true;
       devices = [ "nodev" ];
       useOSProber = true;
@@ -81,12 +81,6 @@
     enable = true;
     xkb.layout = "us";
 
-    displayManager = {
-      sddm.enable = true;
-      sddm.theme = "${import ../../sys/sddm/tokyo-night.nix { inherit pkgs; }}";
-      defaultSession = "none+dwm";
-    };
-
     windowManager.dwm = {
       enable = true;
       package = pkgs.dwm.overrideAttrs (oldAttrs: {
@@ -94,6 +88,12 @@
         src = ../../sys/dwm;
       });
     };
+  };
+
+  services.displayManager = {
+    sddm.enable = true;
+    sddm.theme = "${import ../../sys/sddm/tokyo-night.nix { inherit pkgs; }}";
+    defaultSession = "none+dwm";
   };
 
   services.libinput.enable = true;
@@ -107,53 +107,6 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
-  };
-
-  stylix.enable = true;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
-  stylix.image = ../../assets/backgrounds/Minimal-Nord.png;
-
-  stylix.cursor.package = pkgs.phinger-cursors;
-  stylix.cursor.name = "phinger-cursors-dark";
-
-  stylix.fonts = {
-    monospace = {
-      package = pkgs.hack-font;
-      name = "Hack Regular";
-    };
-
-    sansSerif = {
-      package = pkgs.fira;
-      name = "FiraSans Regular";
-    };
-
-    serif = {
-      package = pkgs.fira;
-      name = "FiraSans Regular";
-    };
-
-    emoji = {
-      package = pkgs.noto-fonts-emoji;
-      name = "Noto Color Emoji";
-    };
-  };
-
-  stylix.targets.grub.enable = false;
-  stylix.targets.nixvim.enable = false;
-  stylix.targets.plymouth.enable = true;
-
-  stylix.fonts.sizes = {
-    applications = 11;
-    terminal = 12;
-    desktop = 12;
-    popups = 10;
-  };
-
-  home-manager = {
-    extraSpecialArgs = {
-      inherit inputs;
-    };
-    users."aleksic" = import ../../users/aleksic/home.nix;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -171,15 +124,19 @@
     feh
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
+    qt5.full
+    gtk4
+    gtk3
+    gtk2
   ];
 
   programs.zsh.enable = true;
   programs.mtr.enable = true;
+  programs.dconf.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = false;
   };
-
   services.openssh.enable = false;
 
   system.copySystemConfiguration = false;

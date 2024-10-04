@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   pkgs,
   inputs,
@@ -11,7 +12,14 @@
 
   imports = [ ../common/terminal/zsh.nix ];
   home.packages = with pkgs; [
+    phinger-cursors
     fastfetch
+    nautilus
+    eog
+    gthumb
+    kdePackages.dolphin
+    nordic
+    nordzy-icon-theme
   ];
 
   home.file = {
@@ -33,7 +41,33 @@
   };
 
   home.sessionVariables = {
+    GTK_THEME = "Nordic";
+    # QT_STYLE_OVERRIDE = "Nordic"; # dolphin complains
     # EDITOR = "emacs";
+  };
+
+  home.pointerCursor = lib.mkForce {
+    gtk.enable = true;
+    x11.enable = true;
+    name = "phinger-cursors-dark";
+    package = pkgs.phinger-cursors;
+    size = 24;
+  };
+
+  #qt = {
+  #  enable = true;
+  #  platformTheme.name = "gtk";
+  #  style.package = pkgs.nordic;
+  #  style.name = "Nordic";
+  #};
+
+  #export GTK_THEME=Nordic
+  gtk = {
+    enable = true;
+    theme.package = lib.mkForce pkgs.nordic;
+    theme.name = lib.mkDefault "Nordic";
+    iconTheme.package = pkgs.nordzy-icon-theme;
+    iconTheme.name = "Nordzy";
   };
 
   # Let Home Manager install and manage itself.

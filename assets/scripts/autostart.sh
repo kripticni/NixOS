@@ -5,4 +5,4 @@
 #polybar middle &>/dev/null &
 #polybar tray &>/dev/null &
 #polybar xwindow &>/dev/null &
-feh --bg-fill /home/aleksic/NixOS/assets/backgrounds/mountains.png
+feh --bg-fill /home/aleksic/NixOS/assets/backgrounds/mountains-mono.png

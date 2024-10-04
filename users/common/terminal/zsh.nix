@@ -16,6 +16,7 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
+      rmswp = "find $HOME/NixOS/ -iname '*' | grep '~' | xargs -I {} rm {}";
       ll = "ls -l";
       ls = "ls --color=auto";
       dir = "dir --color=auto";
