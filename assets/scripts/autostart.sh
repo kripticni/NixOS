@@ -6,3 +6,4 @@
 #polybar tray &>/dev/null &
 #polybar xwindow &>/dev/null &
 feh --bg-fill /home/aleksic/NixOS/assets/backgrounds/mountains-mono.png
+xsetroot -cursor_name left_ptr

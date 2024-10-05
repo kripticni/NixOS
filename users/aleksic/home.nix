@@ -20,30 +20,25 @@
     kdePackages.dolphin
     nordic
     nordzy-icon-theme
+    utterly-nord-plasma
   ];
 
   home.file = {
     ".dwm/autostart.sh".source = ../../assets/scripts/autostart.sh;
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
   };
 
   xdg.configFile = {
     "dwm/autostart.sh".source = ../../assets/scripts/autostart.sh;
+
+    "Kvantum/Utterly-Nord-Solid-Plasma/Utterly-Nord-Solid".source = "${pkgs.utterly-nord-plasma}/share/Kvantum/Utterly-Nord-Solid/";
+    "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=Utterly-Nord-Solid";
   };
 
   home.sessionVariables = {
     GTK_THEME = "Nordic";
-    # QT_STYLE_OVERRIDE = "Nordic"; # dolphin complains
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+    QT_STYLE_OVERRIDE = "kvantum";
   };
 
   home.pointerCursor = lib.mkForce {
@@ -54,14 +49,13 @@
     size = 24;
   };
 
-  #qt = {
-  #  enable = true;
-  #  platformTheme.name = "gtk";
-  #  style.package = pkgs.nordic;
-  #  style.name = "Nordic";
-  #};
+  qt = {
+    enable = true;
+    platformTheme.name = "qt5ct";
+    style.package = pkgs.utterly-nord-plasma;
+    style.name = "kvantum";
+  };
 
-  #export GTK_THEME=Nordic
   gtk = {
     enable = true;
     theme.package = lib.mkForce pkgs.nordic;
@@ -70,6 +64,5 @@
     iconTheme.name = "Nordzy";
   };
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

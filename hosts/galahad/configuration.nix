@@ -122,13 +122,34 @@
   environment.systemPackages = with pkgs; [
     pavucontrol
     feh
+    kdePackages.qtstyleplugin-kvantum
+    kdePackages.breeze-icons
+    kdePackages.qtsvg
+    kdePackages.libplasma
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
+    libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5ct
+    libsForQt5.qt5.qtsvg
+    libsForQt5.kdeclarative
+    libsForQt5.plasma-workspace
+    libsForQt5.kirigami2
     qt5.full
     gtk4
     gtk3
     gtk2
   ];
+
+  environment.sessionVariables = rec {
+    XDG_CACHE_HOME = "$HOME/.cache";
+    XDG_CONFIG_HOME = "$HOME/.config";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_STATE_HOME = "$HOME/.local/state";
+    XDG_BIN_HOME = "$HOME/.local/bin";
+    PATH = [
+      "${XDG_BIN_HOME}"
+    ];
+  };
 
   programs.zsh.enable = true;
   programs.mtr.enable = true;
