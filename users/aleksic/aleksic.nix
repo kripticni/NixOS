@@ -21,13 +21,13 @@
     ];
     packages = with pkgs; [
       brave
+      viber
       vim
-      git
+      tree
       curl
       wget
-      alacritty
       efibootmgr
-      tree
+      pciutils
     ];
     shell = pkgs.zsh;
     initialPassword = "pw123";

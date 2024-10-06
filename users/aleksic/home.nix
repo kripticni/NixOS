@@ -21,6 +21,9 @@
     nordic
     nordzy-icon-theme
     utterly-nord-plasma
+
+    alacritty
+    git
   ];
 
   home.file = {

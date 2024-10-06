@@ -17,8 +17,6 @@
     inputs.home-manager.nixosModules.default
   ];
 
-  # bootloader, grub, since refind cant be managed declaratively
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -63,7 +61,27 @@
       #	}
       #	'';
     };
+  };
 
+  hardware.graphics = {
+    # opengl
+    enable = true;
+    enable32Bit = true;
+  };
+
+  nixpkgs.config.nvidia.acceptLicense = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+  };
+  hardware.nvidia.prime = {
+    sync.enable = true;
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:9:0:0";
   };
 
   networking.hostName = "galahad";
@@ -89,6 +107,14 @@
       });
     };
   };
+
+  services.xserver.displayManager.sessionCommands = ''
+    num_monitors=$(xrandr | grep -c ' connected')
+
+    if [ "$num_monitors" -gt 1 ]; then
+       xrandr --output eDP-1-1 --off && xrandr --output HDMI-1-1 --mode 1920x1080
+    fi
+  '';
 
   services.displayManager = {
     sddm.enable = true;
@@ -122,6 +148,7 @@
   environment.systemPackages = with pkgs; [
     pavucontrol
     feh
+
     kdePackages.qtstyleplugin-kvantum
     kdePackages.breeze-icons
     kdePackages.qtsvg
@@ -131,13 +158,17 @@
     libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
     libsForQt5.qt5.qtsvg
-    libsForQt5.kdeclarative
-    libsForQt5.plasma-workspace
-    libsForQt5.kirigami2
+    libsForQt5.dolphin
     qt5.full
     gtk4
     gtk3
     gtk2
+
+    nix-prefetch-scripts
+    nix-prefetch
+    nix-output-monitor
+    nvd
+    cachix
   ];
 
   environment.sessionVariables = rec {
