@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
-#picom --no-use-damage --backend glx --vsync -b &>/dev/null &
-#polybar left &>/dev/null &
-#polybar right &>/dev/null &
-#polybar middle &>/dev/null &
-#polybar tray &>/dev/null &
-#polybar xwindow &>/dev/null &
-feh --bg-fill /home/aleksic/NixOS/assets/backgrounds/mountains-mono.png
-xsetroot -cursor_name left_ptr
+picom --config /home/aleksic/NixOS/sys/picom/pijulius.conf &
+feh --bg-fill /home/aleksic/NixOS/assets/backgrounds/mountains-mono.png &
+xsetroot -cursor_name left_ptr &
+polybar --config=/home/aleksic/NixOS/sys/polybar/nord/nord.ini mel-bar

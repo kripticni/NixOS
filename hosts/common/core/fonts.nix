@@ -22,6 +22,8 @@
     noto-fonts-monochrome-emoji
     noto-fonts-cjk-sans
     dejavu_fonts
+    meslo-lgs-nf
+    font-awesome
   ];
 
   fonts.fontDir.enable = true;

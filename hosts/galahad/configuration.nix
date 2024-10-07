@@ -69,20 +69,21 @@
     enable32Bit = true;
   };
 
-  nixpkgs.config.nvidia.acceptLicense = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-  };
-  hardware.nvidia.prime = {
-    sync.enable = true;
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:9:0:0";
-  };
+  #for some reason, this is awfully buggy and slow
+  #nixpkgs.config.nvidia.acceptLicense = true;
+  #services.xserver.videoDrivers = [ "nvidia" ];
+  #hardware.nvidia = {
+  #  modesetting.enable = true;
+  #  powerManagement.enable = false;
+  #  powerManagement.finegrained = false;
+  #  open = false;
+  #  package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+  #};
+  #hardware.nvidia.prime = {
+  #  sync.enable = true;
+  #  intelBusId = "PCI:0:2:0";
+  #  nvidiaBusId = "PCI:9:0:0";
+  #};
 
   networking.hostName = "galahad";
   networking.networkmanager.enable = true;
@@ -110,9 +111,10 @@
 
   services.xserver.displayManager.sessionCommands = ''
     num_monitors=$(xrandr | grep -c ' connected')
-
+    intern=$(xrandr | grep connected | awk '{print $1}' | tr '\n' ' ' | awk '{print $1}')
+    extern=$(xrandr | grep connected | awk '{print $1}' | tr '\n' ' ' | awk '{print $2}')
     if [ "$num_monitors" -gt 1 ]; then
-       xrandr --output eDP-1-1 --off && xrandr --output HDMI-1-1 --mode 1920x1080
+       xrandr --output $intern --off && xrandr --output $extern --mode 1920x1080
     fi
   '';
 
@@ -167,6 +169,7 @@
     nix-prefetch-scripts
     nix-prefetch
     nix-output-monitor
+    nix-search-cli
     nvd
     cachix
   ];

@@ -10,7 +10,10 @@
   home.homeDirectory = "/home/aleksic";
   home.stateVersion = "24.05";
 
-  imports = [ ../common/terminal/zsh.nix ];
+  imports = [
+    ../common/terminal/zsh.nix
+    ./theme.nix
+  ];
   home.packages = with pkgs; [
     phinger-cursors
     fastfetch
@@ -21,7 +24,10 @@
     nordic
     nordzy-icon-theme
     utterly-nord-plasma
+    libreoffice
 
+    polybarFull
+    picom-pijulius
     alacritty
     git
   ];
@@ -42,29 +48,6 @@
     EDITOR = "nvim";
     QT_QPA_PLATFORMTHEME = "qt5ct";
     QT_STYLE_OVERRIDE = "kvantum";
-  };
-
-  home.pointerCursor = lib.mkForce {
-    gtk.enable = true;
-    x11.enable = true;
-    name = "phinger-cursors-dark";
-    package = pkgs.phinger-cursors;
-    size = 24;
-  };
-
-  qt = {
-    enable = true;
-    platformTheme.name = "qt5ct";
-    style.package = pkgs.utterly-nord-plasma;
-    style.name = "kvantum";
-  };
-
-  gtk = {
-    enable = true;
-    theme.package = lib.mkForce pkgs.nordic;
-    theme.name = lib.mkDefault "Nordic";
-    iconTheme.package = pkgs.nordzy-icon-theme;
-    iconTheme.name = "Nordzy";
   };
 
   programs.home-manager.enable = true;

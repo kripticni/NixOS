@@ -26,6 +26,7 @@
       egrep = "egrep --color=auto";
       diff = "diff --color=auto";
       ip = "ip --color=auto";
+      alacritty = "LIBGL_ALWAYS_SOFTWARE=1 alacritty";
     };
 
     history = {

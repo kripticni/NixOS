@@ -1,0 +1,6 @@
+https://github.com/gh0stzk/dotfiles, for polybar, which i'll change manually later down the line
+pijulius for his template for picom
+kraken for his dwm with ipc, which i heavily forked
+https://github.com/vinceliuice/Elegant-grub2-themes, for the grub theme which i might modify
+vimjoyer for beginner tutorials
+the wonderful people in the nixos discord
