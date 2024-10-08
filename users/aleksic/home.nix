@@ -13,23 +13,25 @@
   imports = [
     ../common/terminal/zsh.nix
     ./theme.nix
+    ./polybar.nix
   ];
   home.packages = with pkgs; [
     phinger-cursors
-    fastfetch
+    nordzy-icon-theme
+    utterly-nord-plasma
+    nordic
+
     nautilus
     eog
     gthumb
     kdePackages.dolphin
-    nordic
-    nordzy-icon-theme
-    utterly-nord-plasma
     libreoffice
 
     polybarFull
     picom-pijulius
+
     alacritty
-    git
+    fastfetch
   ];
 
   home.file = {
@@ -41,6 +43,15 @@
 
     "Kvantum/Utterly-Nord-Solid-Plasma/Utterly-Nord-Solid".source = "${pkgs.utterly-nord-plasma}/share/Kvantum/Utterly-Nord-Solid/";
     "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=Utterly-Nord-Solid";
+
+    "polybar/nord".source = ../../sys/polybar/nord;
+    "polybar/system.ini".source = ../../sys/polybar/system.ini;
+
+    "picom/".source = ../../sys/picom;
+  };
+
+  xdg.dataFile = {
+    "backgrounds".source = ../../assets/backgrounds;
   };
 
   home.sessionVariables = {
