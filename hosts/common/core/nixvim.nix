@@ -8,13 +8,21 @@
 
     opts = {
       autoindent = true;
-      backup = true;
-      writebackup = true;
       cursorline = true;
       expandtab = true;
       wrap = false;
       relativenumber = true;
       tabstop = 2;
+      softtabstop = 2;
+      shiftwidth = 2;
+
+      backup = false;
+      writebackup = false;
+      swapfile = false;
+      undofile = false;
+
+      ignorecase = true;
+      smartcase = true;
     };
 
     performance = {
@@ -79,8 +87,8 @@
         clangd.enable = true;
         cmake.enable = true;
         bashls.enable = true;
-        lua-ls.enable = true;
-        rust-analyzer = {
+        lua_ls.enable = true;
+        rust_analyzer = {
           enable = true;
           installRustc = true;
           installCargo = true;
@@ -92,6 +100,11 @@
     plugins.cmp = {
       enable = true;
       autoEnableSources = true;
+      settings.sources = [
+        { name = "nvim_lsp"; }
+        { name = "path"; }
+        { name = "buffer"; }
+      ];
     };
 
     plugins.conform-nvim = {

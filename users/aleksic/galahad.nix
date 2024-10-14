@@ -28,6 +28,8 @@
       wget
       efibootmgr
       pciutils
+
+      gcc
     ];
     shell = pkgs.zsh;
     initialPassword = "pw123";
