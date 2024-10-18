@@ -69,6 +69,17 @@
     enable32Bit = true;
   };
 
+  hardware.bluetooth.enable = true;
+
+  virtualisation.containers.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enable = true;
+    };
+  };
+
   #for some reason, this is awfully buggy and slow
   #nixpkgs.config.nvidia.acceptLicense = true;
   #services.xserver.videoDrivers = [ "nvidia" ];
@@ -149,7 +160,9 @@
 
   environment.systemPackages = with pkgs; [
     pavucontrol
+    cairo
     feh
+    mpd
 
     kdePackages.qtstyleplugin-kvantum
     kdePackages.breeze-icons
@@ -185,6 +198,9 @@
     ];
   };
 
+  services.openssh.enable = false;
+  services.gvfs.enable = true;
+
   programs.zsh.enable = true;
   programs.mtr.enable = true;
   programs.dconf.enable = true;
@@ -192,10 +208,8 @@
     enable = true;
     enableSSHSupport = false;
   };
-  services.openssh.enable = false;
   programs.ssh.enableAskPassword = false;
 
   system.copySystemConfiguration = false;
-  system.stateVersion = "24.05"; # Did you read the comment?
-
+  system.stateVersion = "24.05";
 }

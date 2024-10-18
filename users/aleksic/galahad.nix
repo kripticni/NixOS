@@ -20,16 +20,53 @@
       "nix-users"
     ];
     packages = with pkgs; [
-      brave
-      viber
       vim
+      neovide
       tree
+      ripgrep
+      tmux
+
+      ffmpeg
+      imagemagick
+
+      util-linux
+      rpm
+      dpkg
+
+      aria2
       curl
       wget
+      zip
+      unzip
+      gnutar
+
+      mount
+      mount-zip
+      squashfuse
+      fuse
+      jmtpfs
+
+      exiftools
+      mdbtools
+
       efibootmgr
       pciutils
+      cryptsetup
+      luksmeta
+
+      distrobox
+      podman
+      lilipod
+      docker
+      dive
+      docker-compose
+      podman-compose
 
       gcc
+      gdb
+      pipx
+      gnumake
+      pkg-config
     ];
     shell = pkgs.zsh;
     initialPassword = "pw123";
@@ -60,16 +97,29 @@
         utterly-nord-plasma
         nordic
 
+        brave
+        viber
+        telegram-desktop
+        discord
+        discordo
         nautilus
         eog
         gthumb
+        vlc
         kdePackages.dolphin
+        obsidian
+        syncthing
         libreoffice
+        zathura
+
+        ncmpcpp
 
         polybarFull
         picom-pijulius
 
         fastfetch
+        btop
+        ranger
       ];
 
       home.file = {
