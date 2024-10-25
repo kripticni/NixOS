@@ -46,7 +46,7 @@
       fuse
       jmtpfs
 
-      exiftools
+      exiftool
       mdbtools
 
       efibootmgr
@@ -56,7 +56,6 @@
 
       distrobox
       podman
-      lilipod
       docker
       dive
       docker-compose
@@ -113,6 +112,7 @@
         zathura
 
         ncmpcpp
+        spotdl
 
         polybarFull
         picom-pijulius

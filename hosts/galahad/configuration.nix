@@ -101,6 +101,18 @@
 
   time.timeZone = "Europe/Belgrade";
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.supportedLocales = [
+    "en_US.UTF-8/UTF-8"
+    "C.UTF-8/UTF-8"
+    "sr_RS/UTF-8"
+    "sr_RS@latin/UTF-8"
+    "sr_ME/UTF-8"
+  ];
+  i18n.extraLocaleSettings = {
+    LC_ALL = "en_US.UTF-8";
+    LC_MESSAGES = "en_US.UTF-8";
+    LC_CTYPE = "C.UTF-8";
+  };
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
