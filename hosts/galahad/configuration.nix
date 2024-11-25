@@ -100,7 +100,7 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Belgrade";
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8"; # change by using setxkbmap rs/eu
   i18n.supportedLocales = [
     "en_US.UTF-8/UTF-8"
     "C.UTF-8/UTF-8"

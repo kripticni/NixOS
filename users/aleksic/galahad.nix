@@ -29,6 +29,8 @@
       ffmpeg
       imagemagick
 
+      man
+      glibcInfo
       util-linux
       rpm
       dpkg
@@ -39,6 +41,7 @@
       zip
       unzip
       gnutar
+      file
 
       mount
       mount-zip
@@ -61,11 +64,14 @@
       docker-compose
       podman-compose
 
+      libgcc
       gcc
       gdb
       pipx
+      tealdeer
       gnumake
       pkg-config
+      stdman
     ];
     shell = pkgs.zsh;
     initialPassword = "pw123";
