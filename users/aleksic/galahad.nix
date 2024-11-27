@@ -72,6 +72,12 @@
       gnumake
       pkg-config
       stdman
+
+      linuxKernel.packages.linux_6_6.perf
+      hotspot
+      heaptrack
+      valgrind
+      uasm
     ];
     shell = pkgs.zsh;
     initialPassword = "pw123";
