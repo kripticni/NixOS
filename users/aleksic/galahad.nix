@@ -25,6 +25,7 @@
       tree
       ripgrep
       tmux
+      xclip
 
       ffmpeg
       imagemagick
@@ -64,12 +65,17 @@
       docker-compose
       podman-compose
 
-      libgcc
+      octaveFull
+
       gcc
+      #libgcc
+      clang-tools
+      clang
       gdb
       pipx
       tealdeer
       gnumake
+      cmake
       pkg-config
       stdman
 
@@ -78,6 +84,8 @@
       heaptrack
       valgrind
       uasm
+      nasm
+      yasm
     ];
     shell = pkgs.zsh;
     initialPassword = "pw123";
@@ -136,6 +144,7 @@
 
       home.file = {
         ".dwm/autostart.sh".source = ../../assets/scripts/autostart.sh;
+        ".config/clangd/config.yaml".source = ../../assets/config/clangd/config.yaml;
       };
 
       xdg.configFile = {

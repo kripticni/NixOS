@@ -1,0 +1,13 @@
+CompileFlags:
+  Add: [ -Wall, -Wextra, -Werror, -ferror-limit=0 ]
+---
+  If:
+      PathMatch: [.*\.c$, .*\.h$]
+  CompileFlags:
+    Add: [ -std=c23 ]
+
+---
+  If:
+      PathMatch: [.*\.cpp$, .*\.hpp$]
+  CompileFlags:
+    Add: [ -std=c++14, -Wnrvo, -Wno-c++17-extensions, -Wno-deprecated ]

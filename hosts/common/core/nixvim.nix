@@ -31,7 +31,9 @@
     };
 
     extraPackages = with pkgs; [
+      gcc
       clang-tools
+      clang
       nixfmt-rfc-style
       shfmt
       black
@@ -61,6 +63,7 @@
           rust
           nix
           c
+          cpp
           nasm
           asm
           regex
@@ -84,10 +87,18 @@
       inlayHints = true;
       servers = {
         nixd.enable = true;
-        clangd.enable = true;
         cmake.enable = true;
         bashls.enable = true;
         lua_ls.enable = true;
+        #asm_lsp.enable = true; # just reports syntax error at top, cant bother to configure it
+        clangd = {
+          enable = true;
+          #cmd = [
+          #  "clangd"
+          #  "--compile-commands-dir=/home/aleksic/.config/clangd/"
+          #  "-resource-dir=/nix/store/bgs9im0bhq5a2zrnnv01ivg8240kyzis-clang-18.1.8/lib/clang/18"
+          #];
+        };
         rust_analyzer = {
           enable = true;
           installRustc = true;
@@ -114,6 +125,7 @@
         formatters_by_ft = {
           "_" = [ "trim_whitespace" ];
           c = [ "clang-format" ];
+          cpp = [ "clang-format" ];
           lua = [ "stylua" ];
           nix = [ "nixfmt" ];
           python = [
