@@ -66,6 +66,10 @@
       podman-compose
 
       octaveFull
+      conda
+      python3Full
+      lua
+      luau
 
       gcc
       #libgcc
@@ -131,6 +135,7 @@
         libreoffice
         zathura
 
+        flameshot
         ncmpcpp
         spotdl
 
