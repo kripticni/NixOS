@@ -43,6 +43,7 @@
       unzip
       gnutar
       file
+      bc
 
       mount
       mount-zip
