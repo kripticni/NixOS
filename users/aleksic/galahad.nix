@@ -141,7 +141,7 @@
         spotdl
 
         polybarFull
-        picom-pijulius
+        picom
 
         fastfetch
         btop
@@ -150,13 +150,15 @@
 
       home.file = {
         ".dwm/autostart.sh".source = ../../assets/scripts/autostart.sh;
+        ".dwm/bar.sh".source = ../../assets/scripts/bar.sh;
         ".config/clangd/config.yaml".source = ../../assets/config/clangd/config.yaml;
       };
 
       xdg.configFile = {
         "dwm/autostart.sh".source = ../../assets/scripts/autostart.sh;
 
-        "Kvantum/Utterly-Nord-Solid-Plasma/Utterly-Nord-Solid".source = "${pkgs.utterly-nord-plasma}/share/Kvantum/Utterly-Nord-Solid/";
+        "Kvantum/Utterly-Nord-Solid-Plasma/Utterly-Nord-Solid".source =
+          "${pkgs.utterly-nord-plasma}/share/Kvantum/Utterly-Nord-Solid/";
         "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=Utterly-Nord-Solid";
 
         "polybar/nord".source = ../../sys/polybar/nord;
