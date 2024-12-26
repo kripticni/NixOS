@@ -1,5 +1,12 @@
 { pkgs, lib, ... }:
 {
+  home.packages = with pkgs; [
+    phinger-cursors
+    nordzy-icon-theme
+    utterly-nord-plasma
+    nordic
+  ];
+
   home.pointerCursor = lib.mkForce {
     gtk.enable = true;
     x11.enable = true;

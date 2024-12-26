@@ -31,7 +31,8 @@
 
     history = {
       size = 10000;
-      path = "$HOME/.config/zsh/history";
+      path = "$XDG_DATA_HOME/zsh/history";
+      append = true;
     };
   };
 

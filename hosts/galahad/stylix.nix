@@ -37,8 +37,7 @@
       grub.enable = false;
       nixvim.enable = false;
       gtk.enable = false;
-      #kde.enable = true; apperantly only with home manager
-      plymouth.enable = true;
+      plymouth.enable = false;
     };
 
     fonts.sizes = {

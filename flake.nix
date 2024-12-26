@@ -37,7 +37,7 @@
             inherit inputs;
           };
           modules = [
-            ./hosts/galahad/configuration.nix
+            ./hosts/galahad
             inputs.home-manager.nixosModules.default
             inputs.nixvim.nixosModules.nixvim
             inputs.stylix.nixosModules.stylix
