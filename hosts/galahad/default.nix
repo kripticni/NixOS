@@ -88,7 +88,9 @@
 
   services.displayManager = {
     sddm.enable = true;
-    sddm.theme = "${import ../../sys/sddm/astronaut.nix { inherit pkgs; }}";
+    sddm.theme = "${import ../../sys/sddm/tokyo-night.nix {
+      inherit pkgs;
+    }}";
     defaultSession = "none+dwm";
   };
 
@@ -119,6 +121,7 @@
     feh
     mpd
 
+    sddm-astronaut
     kdePackages.qtstyleplugin-kvantum
     kdePackages.breeze-icons
     kdePackages.qtsvg

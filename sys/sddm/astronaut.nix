@@ -1,7 +1,9 @@
 {
   pkgs,
+  lib,
+  themeConfig ? null,
 }:
-pkgs.stdenv.mkDerivation {
+pkgs.stdenvNoCC.mkDerivation rec {
   pname = "sddm-astronaut";
   version = "1.0";
 
@@ -20,13 +22,32 @@ pkgs.stdenv.mkDerivation {
 
   installPhase =
     let
+      iniFormat = pkgs.formats.ini { };
+      configFile = iniFormat.generate "" { General = themeConfig; };
+
       basePath = "$out/share/sddm/themes/sddm-astronaut-theme";
-      image = "/home/aleksic/NixOS/assets/backgrounds/nixstorm.png";
+      image = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/kripticni/NixOS/refs/heads/main/assets/backgrounds/nixstorm.png";
+        sha256 = "b4c5993e6063b014686d870ea5a5df523c507f4445756e829b38d9be88abe092";
+        curlOptsList = [ "-HUser-Agent: Wget/1.21.4" ];
+      };
     in
     ''
       mkdir -p ${basePath}
       cp -r $src/* ${basePath}
       rm ${basePath}/background.png
       cp ${image} ${basePath}/background.png
+    ''
+    + lib.optionalString (themeConfig != null) ''
+      ln -sf ${configFile} ${basePath}/theme.conf.user
     '';
+
+  meta = {
+    description = "Modern looking qt6 sddm theme";
+    homepage = "https://github.com/${src.owner}/${src.repo}";
+    license = lib.licenses.gpl3;
+
+    platforms = lib.platforms.linux;
+    maintainers = with lib.maintainers; [ danid3v ];
+  };
 }
