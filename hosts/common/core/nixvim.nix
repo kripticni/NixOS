@@ -104,7 +104,6 @@
           installRustc = true;
           installCargo = true;
         };
-        pylsp.enable = true;
       };
     };
 

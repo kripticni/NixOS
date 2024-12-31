@@ -32,7 +32,6 @@
       imagemagick
 
       man
-      glibcInfo
       util-linux
       rpm
       dpkg

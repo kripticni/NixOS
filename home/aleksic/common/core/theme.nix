@@ -4,7 +4,6 @@
     phinger-cursors
     nordzy-icon-theme
     utterly-nord-plasma
-    nordic
   ];
 
   home.pointerCursor = lib.mkForce {
@@ -24,8 +23,6 @@
 
   gtk = {
     enable = true;
-    theme.package = lib.mkForce pkgs.nordic;
-    theme.name = lib.mkDefault "Nordic";
     iconTheme.package = pkgs.nordzy-icon-theme;
     iconTheme.name = "Nordzy";
   };
