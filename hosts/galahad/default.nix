@@ -17,6 +17,8 @@
     inputs.home-manager.nixosModules.default
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
@@ -42,6 +44,24 @@
     # opengl
     enable = true;
     enable32Bit = true;
+  };
+
+  nixpkgs.config.nvidia.acceptLicense = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11_legacy470 ];
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+  };
+  hardware.nvidia.prime = {
+    sync.enable = true;
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:9:0:0";
   };
 
   virtualisation.containers.enable = true;
@@ -161,6 +181,11 @@
   };
 
   environment.pathsToLink = [ "/share/zsh" ];
+
+  services.tor = {
+    enable = true;
+    openFirewall = true;
+  };
 
   services.gvfs.enable = true;
   programs.zsh.enable = true;

@@ -50,6 +50,7 @@
       squashfuse
       fuse
       jmtpfs
+      brightnessctl
 
       exiftool
       mdbtools
@@ -91,6 +92,9 @@
       uasm
       nasm
       yasm
+
+      tor-browser-bundle-bin
+      obfs4
     ];
     shell = pkgs.zsh;
     initialPassword = "pw123";
