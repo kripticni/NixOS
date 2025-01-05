@@ -134,15 +134,16 @@ static char dmenumon[2] =
 static const char *dmenucmd[] = {
     "dmenu_run", "-m",      dmenumon, "-fn",    dmenufont, "-nb",     col_gray1,
     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
-static const char *termcmd[] = {"alacritty", NULL};
-static const char *termcmd2[] = {"st", NULL};
-static const char *printscreencmd[] = {"flameshot", "gui", "NULL"};
+static const char *termcmd[] = {
+    "sh", "-c", "alacritty msg create-window || alacritty", NULL};
+static const char *termcmd2[] = {"alacritty", NULL};
+static const char *printscreencmd[] = {"flameshot", "gui", NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
     //{MODKEY, XK_p, spawn, {.v = dmenucmd}},
     {MODKEY, XK_Return, spawn, {.v = termcmd}},
-    {MODKEY, XK_space, spawn, {.v = termcmd}},
+    {MODKEY, XK_space, spawn, {.v = termcmd2}},
     {MODKEY, XK_b, togglebar, {0}},
     {MODKEY, XK_j, focusstack, {.i = +1}},
     {MODKEY, XK_k, focusstack, {.i = -1}},
