@@ -95,6 +95,9 @@
 
       tor-browser-bundle-bin
       obfs4
+
+      monero-gui
+      monero-cli
     ];
     shell = pkgs.zsh;
     initialPassword = "pw123";
