@@ -14,6 +14,7 @@
     ../common/core
     ../common/users/aleksic.nix
     ../common/opts/dwm
+    ../common/opts/nvf
     inputs.home-manager.nixosModules.default
   ];
 
@@ -182,11 +183,13 @@
 
   environment.pathsToLink = [ "/share/zsh" ];
 
+  systemd.services.tor.serviceConfig.wantedBy = lib.mkForce [ ];
   services.tor = {
     enable = true;
     openFirewall = true;
   };
 
+  systemd.services.xmrig.serviceConfig.wantedBy = lib.mkForce [ ];
   services.xmrig = {
     enable = true;
     package = pkgs.xmrig-mo;
@@ -208,14 +211,14 @@
       };
       autosave = true;
       opencl = false;
-      cuda = {
-        enabled = true;
-        loader = "${
-          pkgs.callPackage ./cuda-plugin.nix {
-            libcuda = "${config.hardware.nvidia.package}/lib/libcuda.so";
-          }
-        }/libxmrig-cuda.so";
-      };
+      #cuda = {
+      # enabled = true;
+      #loader = "${
+      #  pkgs.callPackage ./cuda-plugin.nix {
+      #    libcuda = "${config.hardware.nvidia.package}/lib/libcuda.so";
+      #  }
+      #}/libxmrig-cuda.so";
+      #};
       pools = [
         {
           enabled = true;

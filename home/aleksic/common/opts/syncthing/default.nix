@@ -1,5 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
+  home.packages = [ pkgs.syncthing ];
+  systemd.user.services.syncthing.serviceConfig.wantedBy = lib.mkForce [ ];
   services.syncthing = {
     enable = true;
 
