@@ -183,13 +183,16 @@
 
   environment.pathsToLink = [ "/share/zsh" ];
 
+  systemd.services.syncthing.wantedBy = lib.mkForce [ ];
   systemd.services.tor.serviceConfig.wantedBy = lib.mkForce [ ];
+  systemd.services.tor.wantedBy = lib.mkForce [ ];
   services.tor = {
     enable = true;
     openFirewall = true;
   };
 
   systemd.services.xmrig.serviceConfig.wantedBy = lib.mkForce [ ];
+  systemd.services.xmrig.wantedBy = lib.mkForce [ ];
   services.xmrig = {
     enable = true;
     package = pkgs.xmrig-mo;
