@@ -31,6 +31,8 @@
   ];
 
   home.packages = with pkgs; [
+    flatpak
+
     viber
     discord
     discordo
