@@ -163,8 +163,7 @@
     nix-prefetch
     nix-output-monitor
     nix-search-cli
-    nvd
-    cachix
+    nvd cachix
 
     xcolor
     xclip
@@ -182,6 +181,10 @@
   };
 
   environment.pathsToLink = [ "/share/zsh" ];
+
+  services.flatpak.enable = true;
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   systemd.services.syncthing.wantedBy = lib.mkForce [ ];
   systemd.services.tor.serviceConfig.wantedBy = lib.mkForce [ ];

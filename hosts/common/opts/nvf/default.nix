@@ -34,6 +34,11 @@
             base0F = "#88c0d0"; #colons neotree
           };
         };
+        options = {
+          tabstop = 2;
+          softtabstop = 2;
+          shiftwidth = 2;
+        };
 
         extraPackages = with pkgs; [
           fzf
@@ -46,9 +51,13 @@
 
         dashboard.dashboard-nvim = {
           enable = true;
-
         };
-        statusline.lualine.enable = true;
+
+        mini.statusline.enable = true;
+        statusline.lualine = {
+          enable = false;
+          theme = "nord";
+        };
         telescope.enable = true;
         autocomplete.nvim-cmp.enable = true;
         filetree.neo-tree.enable = true;
