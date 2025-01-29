@@ -15,6 +15,9 @@
     ../common/users/aleksic.nix
     ../common/opts/dwm
     ../common/opts/nvf
+    ../common/opts/tor
+    ../common/opts/xmrig
+    ../common/opts/virt
     inputs.home-manager.nixosModules.default
   ];
 
@@ -63,15 +66,6 @@
     sync.enable = true;
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:9:0:0";
-  };
-
-  virtualisation.containers.enable = true;
-  virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enable = true;
-    };
   };
 
   networking.hostName = "galahad";
@@ -181,63 +175,6 @@
   };
 
   environment.pathsToLink = [ "/share/zsh" ];
-
-  services.flatpak.enable = true;
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
-  systemd.services.syncthing.wantedBy = lib.mkForce [ ];
-  systemd.services.tor.serviceConfig.wantedBy = lib.mkForce [ ];
-  systemd.services.tor.wantedBy = lib.mkForce [ ];
-  services.tor = {
-    enable = true;
-    openFirewall = true;
-  };
-
-  systemd.services.xmrig.serviceConfig.wantedBy = lib.mkForce [ ];
-  systemd.services.xmrig.wantedBy = lib.mkForce [ ];
-  services.xmrig = {
-    enable = true;
-    package = pkgs.xmrig-mo;
-    settings = {
-      cpu = {
-        enabled = true;
-        asm = "intel";
-        max-threads-hint = 75;
-        huge-pages = true;
-        memory-pool = true;
-        hw-aes = true;
-        priority = 2;
-        argon2-impl = "AVX2";
-      };
-      randomx = {
-        init-avx2 = 1;
-        mode = "fast";
-        "1gb-pages" = true;
-      };
-      autosave = true;
-      opencl = false;
-      #cuda = {
-      # enabled = true;
-      #loader = "${
-      #  pkgs.callPackage ./cuda-plugin.nix {
-      #    libcuda = "${config.hardware.nvidia.package}/lib/libcuda.so";
-      #  }
-      #}/libxmrig-cuda.so";
-      #};
-      pools = [
-        {
-          enabled = true;
-          donate-level = 0;
-          donate-over-proxy = 0;
-          url = "gulf.moneroocean.stream:10032";
-          user = "46MtVdJvWmBDB9ZrsGFFpq8igfBogkSHeL8kQxcJ6tEzAadd77udvYGF57FoNUyWUTdvLEPcCLkvWRSmQPLeAQtxEqSQkU8";
-          keepalive = false;
-          tls = false;
-        }
-      ];
-    };
-  };
 
   services.gvfs.enable = true;
   programs.zsh.enable = true;
