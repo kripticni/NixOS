@@ -67,7 +67,12 @@
           enableFormat = true;
           enableTreesitter = true;
           enableExtraDiagnostics = true;
-          markdown.enable = true;
+
+          markdown = {
+            enable = true;
+            extensions.render-markdown-nvim.enable = true;
+            format.enable = true;
+          };
 
           nix.enable = true;
           bash.enable = true;

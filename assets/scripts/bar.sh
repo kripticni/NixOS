@@ -3,7 +3,9 @@
 # ^c$var^ = fg color
 # ^b$var^ = bg color
 
-# interval=0
+interval=5
+has_battery=1
+
 black=#2E3440
 green=#A3BE8C
 white=#D8DEE9
@@ -13,31 +15,8 @@ red=#BF616A
 darkblue=#7292b2
 
 cpu_usage() {
-  cpu_info=($(head -n 1 /proc/stat))
-  user=${cpu_info[1]}
-  nice=${cpu_info[2]}
-  system=${cpu_info[3]}
-  idle=${cpu_info[4]}
-  iowait=${cpu_info[5]}
-  irq=${cpu_info[6]}
-  softirq=${cpu_info[7]}
-
-  total=$((user + nice + system + idle + iowait + irq + softirq))
-  idle_total=$((idle + iowait))
-
-  total_delta=$((total - prev_total))
-  idle_delta=$((idle_total - prev_idle))
-
-  if [ $total_delta -gt 0 ]; then
-    cpu_usage=$(awk "BEGIN {print 100 * ($total_delta - $idle_delta) / $total_delta}")
-  else
-    cpu_usage=0
-  fi
-
+  cpu_usage="$(mpstat 2 1 | awk 'END{print 100-$NF}')"
   printf "^c$green^ ^b$grey^ %.2f" $cpu_usage
-
-  prev_total=$total
-  prev_idle=$idle_total
 }
 
 cpu() {
@@ -45,9 +24,39 @@ cpu() {
   cpu_usage
 }
 
-battery() {
-  get_capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
+battery1() {
+  if [ $has_battery -eq 1 ]; then
+    if cat /sys/class/power_supply/BAT1/capacity; then
+      get_capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
+    else
+      has_battery=0;
+      get_capacity="no battery"
+    fi
+  fi 
+
   printf "^c$red^   $get_capacity "
+}
+
+battery() {
+  # Ensure `has_battery` is set
+  if [ -z "${has_battery+x}" ]; then
+    has_battery=1
+  fi
+
+  if [ "$has_battery" -eq 1 ]; then
+    battery_path="/sys/class/power_supply/BAT1/capacity"
+
+    if [ -r "$battery_path" ]; then
+      get_capacity=$(<"$battery_path")
+    else
+      has_battery=0
+      get_capacity="no battery"
+    fi
+  else
+    get_capacity="no battery"
+  fi
+
+  printf "^c$red^   %s " "$get_capacity"
 }
 
 brightness() {
@@ -78,7 +87,7 @@ bandwidth() {
 }
 
 wlan() {
-  case "$(cat /sys/class/net/enp8s0/operstate 2>/dev/null)" in
+  case "$(cat /sys/class/net/enp8s0/operstate)" in
   up)
     printf "^c$black^ ^b$blue^ 󰤨 ^d^%s" " ^c$blue^"
     bandwidth
@@ -102,5 +111,6 @@ max_brightness=$(cat /sys/class/backlight/*/max_brightness)
 while true; do
   cpu_usage &>/dev/null
   stdbuf -i0 -o0 -e0 xsetroot -name "$(wlan) $(cpu) $(mem) $(clock) $(brightness) $(battery)"
+  sleep $interval
   #wlan && cpu && mem && clock && brightness && battery && printf '\n'
 done

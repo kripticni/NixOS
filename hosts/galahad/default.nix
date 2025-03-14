@@ -16,8 +16,7 @@
     ../common/opts/dwm
     ../common/opts/nvf
     ../common/opts/tor
-    ../common/opts/xmrig
-    ../common/opts/virt
+    ../common/opts/xmrig ../common/opts/virt
     inputs.home-manager.nixosModules.default
   ];
 
@@ -43,7 +42,10 @@
     };
   };
 
-  hardware.bluetooth.enable = false; # no use for it rn
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
+
   hardware.graphics = {
     # opengl
     enable = true;
@@ -130,6 +132,9 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "python-2.7.18.8"
+  ];
   environment.systemPackages = with pkgs; [
     pavucontrol
     cairo
@@ -153,6 +158,7 @@
     gtk3
     gtk2
 
+    sysstat
     nix-prefetch-scripts
     nix-prefetch
     nix-output-monitor
@@ -161,6 +167,8 @@
 
     xcolor
     xclip
+
+    gnome-remote-desktop
   ];
 
   environment.sessionVariables = rec {
@@ -176,6 +184,7 @@
 
   environment.pathsToLink = [ "/share/zsh" ];
 
+  programs.slock.enable = true;
   services.gvfs.enable = true;
   programs.zsh.enable = true;
   programs.mtr.enable = true;
@@ -184,7 +193,9 @@
     enable = true;
     enableSSHSupport = false;
   };
-  services.openssh.enable = false;
+
+  services.gnome.gnome-remote-desktop.enable = true;
+  services.openssh.enable = true;
   programs.ssh.enableAskPassword = false;
 
   system.copySystemConfiguration = false;

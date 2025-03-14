@@ -24,7 +24,7 @@
     ./common/opts/alacritty
     ./common/opts/zsh
     ./common/opts/brave
-    ./common/opts/syncthing
+    #./common/opts/syncthing weird idle network behavior
     ./common/opts/zathura
     ./common/opts/flameshot
     ./common/opts/ncmpcpp
@@ -55,7 +55,25 @@
 
     fastfetch # TODO:Convert to common/opts/fastfetch
     btop
-    # ranger
+    tty-clock
+    cbonsai
+    #ranger
+
+    netcat
+    nmap
+    wireshark
+    dig
+    #busybox
+    arp-scan
+    fcrackzip
+    john
+    volatility3
+    autopsy
+    binwalk
+    ghex
+    #ftk imager
+    inetutils
+    upx
   ];
 
   home.file = {

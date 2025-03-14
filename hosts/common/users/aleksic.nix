@@ -32,7 +32,6 @@
       imagemagick
 
       man
-      util-linux
       rpm
       dpkg
 
@@ -45,6 +44,9 @@
       file
       bc
 
+      util-linux
+      gparted
+      hdparm
       mount
       mount-zip
       squashfuse
@@ -53,8 +55,10 @@
       brightnessctl
 
       exiftool
+      steghide
       mdbtools
 
+      outils
       efibootmgr
       pciutils
       cryptsetup
@@ -67,17 +71,43 @@
       docker-compose
       podman-compose
 
+      nodejs_23
+
       octaveFull
       conda
-      python3Full
+      (python312.withPackages (python312Packages: with python312Packages; [
+        requests
+        urllib3
+        #socketio-client
+        paramiko
+        scapy
+        #httpx
+        #pycurl
+        cryptography
+        pycrypto
+        pycryptodome
+        #pynacl
+        #impacket
+        #python-nmap
+        #pwntools
+        beautifulsoup4
+        # REMINDER: pip2nix for any non-existing pip package in the official repo
+        # devenv is also pretty useful
+      ]))
+        
       lua
       luau
+
+      dotnet-sdk
+      dotnet-repl
 
       gcc
       #libgcc
       clang-tools
       clang
       gdb
+      pwndbg
+      ghidra-bin
       pipx
       tealdeer
       gnumake
