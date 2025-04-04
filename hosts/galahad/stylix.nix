@@ -36,6 +36,9 @@
     targets = {
       grub.enable = false;
       nixvim.enable = false;
+      nvf.enable = false;
+      #neovim.enable = false;
+      #vim.enable = false;
       gtk.enable = false;
       plymouth.enable = false;
     };

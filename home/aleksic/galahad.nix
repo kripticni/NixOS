@@ -4,9 +4,7 @@
   inputs,
   pkgs,
   ...
-}:
-
-{
+}: {
   home.username = "aleksic";
   home.homeDirectory = "/home/aleksic";
   home.stateVersion = "24.05";
@@ -14,6 +12,8 @@
   nixpkgs.config.allowUnfree = true;
 
   stylix.targets = {
+    neovim.enable = false;
+    vim.enable = false;
     alacritty.enable = false;
     zathura.enable = true;
     kde.enable = true;
@@ -67,13 +67,18 @@
     arp-scan
     fcrackzip
     john
+    hashcat
     volatility3
     autopsy
+    sleuthkit
     binwalk
     ghex
+    bvi
     #ftk imager
     inetutils
     upx
+    #pwntools installing the python module in user also gets us these
+    #checksec
   ];
 
   home.file = {
@@ -85,8 +90,7 @@
   xdg.configFile = {
     "dwm/autostart.sh".source = ../../assets/scripts/autostart.sh;
 
-    "Kvantum/Utterly-Nord-Solid-Plasma/Utterly-Nord-Solid".source =
-      "${pkgs.utterly-nord-plasma}/share/Kvantum/Utterly-Nord-Solid/";
+    "Kvantum/Utterly-Nord-Solid-Plasma/Utterly-Nord-Solid".source = "${pkgs.utterly-nord-plasma}/share/Kvantum/Utterly-Nord-Solid/";
     "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=Utterly-Nord-Solid";
 
     "polybar/nord".source = ../../sys/polybar/nord;
@@ -104,6 +108,7 @@
     EDITOR = "nvim";
     QT_QPA_PLATFORMTHEME = "qt5ct";
     QT_STYLE_OVERRIDE = "kvantum";
+    RUBY_THREAD_VM_STACK_SIZE = 1000000;
   };
 
   programs.home-manager.enable = true;

@@ -169,6 +169,8 @@
     xclip
 
     gnome-remote-desktop
+    openssh
+    openssl
   ];
 
   environment.sessionVariables = rec {

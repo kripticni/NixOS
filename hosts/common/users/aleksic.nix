@@ -4,9 +4,7 @@
   pkgs,
   inputs,
   ...
-}:
-
-{
+}: {
   users.users.aleksic = {
     isNormalUser = true;
     extraGroups = [
@@ -35,16 +33,23 @@
       rpm
       dpkg
 
+      hashid
+      hash-identifier
       aria2
       curl
       wget
+      p7zip
       zip
       unzip
+      lzip
+      lz4
+      lzop
       gnutar
       file
       bc
 
       util-linux
+      sharutils
       gparted
       hdparm
       mount
@@ -56,6 +61,7 @@
 
       exiftool
       steghide
+      zsteg
       mdbtools
 
       outils
@@ -71,34 +77,41 @@
       docker-compose
       podman-compose
 
+      sqlite
+      postgresql
+
       nodejs_23
+      zulu
 
       octaveFull
       conda
-      (python312.withPackages (python312Packages: with python312Packages; [
-        requests
-        urllib3
-        #socketio-client
-        paramiko
-        scapy
-        #httpx
-        #pycurl
-        cryptography
-        pycrypto
-        pycryptodome
-        #pynacl
-        #impacket
-        #python-nmap
-        #pwntools
-        beautifulsoup4
-        # REMINDER: pip2nix for any non-existing pip package in the official repo
-        # devenv is also pretty useful
-      ]))
-        
+      (python312.withPackages (python312Packages:
+        with python312Packages; [
+          requests
+          urllib3
+          #socketio-client
+          paramiko
+          scapy
+          #httpx
+          #pycurl
+          cryptography
+          pycrypto
+          pycryptodome
+          #pynacl
+          #impacket
+          #python-nmap
+          pwntools
+          beautifulsoup4
+          pillow
+          # REMINDER: pip2nix for any non-existing pip package in the official repo
+          # devenv is also pretty useful
+        ]))
+
       lua
       luau
 
-      dotnet-sdk
+      #jetbrains.rider # flatpaked
+      dotnet-sdk_9
       dotnet-repl
 
       gcc
@@ -106,7 +119,8 @@
       clang-tools
       clang
       gdb
-      pwndbg
+      gef
+      #pwndbg
       ghidra-bin
       pipx
       tealdeer
