@@ -1,11 +1,19 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     alacritty
   ];
   programs.alacritty = {
     enable = true;
     settings = {
+      font = {
+        normal = {
+          family = "Hack Nerd Font Mono";
+          style = "Regular";
+        };
+        bold.style = "Bold";
+        italic.style = "Italic";
+        size = 14;
+      };
       colors = {
         bright = {
           black = "#4c566a";

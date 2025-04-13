@@ -108,7 +108,8 @@
     EDITOR = "nvim";
     QT_QPA_PLATFORMTHEME = "qt5ct";
     QT_STYLE_OVERRIDE = "kvantum";
-    RUBY_THREAD_VM_STACK_SIZE = 1000000;
+    RUBY_THREAD_VM_STACK_SIZE = 1000000; # fix for zsteg
+    _JAVA_AWT_WM_NONREPARENTING = 1; # fix for some java apps on wms
   };
 
   programs.home-manager.enable = true;

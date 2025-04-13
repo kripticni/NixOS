@@ -119,7 +119,7 @@
       clang-tools
       clang
       gdb
-      gef
+      #gef # commented out for ghidra.gdb
       #pwndbg
       ghidra-bin
       pipx
@@ -145,6 +145,12 @@
     ];
     shell = pkgs.zsh;
     initialPassword = "pw123";
+  };
+
+  programs.ghidra = {
+    enable = true;
+    package = pkgs.ghidra-bin;
+    gdb = true;
   };
 
   home-manager = {

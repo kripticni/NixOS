@@ -1,14 +1,18 @@
-{ pkgs,
+{
+  pkgs,
   lib,
   config,
   options,
   ...
-}:
-{
+}: {
   programs.nvf = {
     enable = true;
     settings = {
       vim = {
+        luaConfigPre = ''
+          vim.diagnostic.config({virtual_lines = true})
+          vim.lsp.inlay_hint.enable(true)
+        '';
         theme = {
           enable = true;
           name = "base16";
@@ -48,7 +52,6 @@
           ripgrep
         ];
 
-
         dashboard.dashboard-nvim = {
           enable = true;
         };
@@ -56,7 +59,7 @@
         ui.colorizer = {
           enable = true;
           setupOpts.filetypes = {
-            "*" = { };
+            "*" = {};
           };
         };
         mini.statusline.enable = true;
@@ -73,7 +76,7 @@
           markdown = {
             enable = true;
             extensions.render-markdown-nvim.enable = true;
-            format.enable = true;
+            format.enable = false;
           };
 
           nix.enable = true;
@@ -93,9 +96,7 @@
 
           sql.enable = true;
         };
-
       };
     };
   };
-
 }
