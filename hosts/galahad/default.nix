@@ -4,9 +4,7 @@
   pkgs,
   inputs,
   ...
-}:
-
-{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./stylix.nix # since this is single user for now, no need to migrate to hm
@@ -16,7 +14,8 @@
     ../common/opts/dwm
     ../common/opts/nvf
     ../common/opts/tor
-    ../common/opts/xmrig ../common/opts/virt
+    ../common/opts/xmrig
+    ../common/opts/virt
     inputs.home-manager.nixosModules.default
   ];
 
@@ -27,7 +26,7 @@
     "flakes"
   ];
 
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
@@ -36,7 +35,7 @@
     grub = {
       enable = true;
       efiSupport = true;
-      devices = [ "nodev" ];
+      devices = ["nodev"];
       useOSProber = true;
       theme = ../../sys/grub;
     };
@@ -53,8 +52,8 @@
   };
 
   nixpkgs.config.nvidia.acceptLicense = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11_legacy470 ];
+  services.xserver.videoDrivers = ["nvidia"];
+  boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11_legacy470];
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -100,7 +99,7 @@
     if [ "$num_monitors" -gt 1 ]; then
        xrandr --output $intern --off && xrandr --output $extern --mode 1920x1080
     fi
-    setxkbmap -layout "us,rs" -option "grp:alt_shift_toggle"
+    setxkbmap -layout "us,rs,rs" -variant ",latin," -option "grp:alt_shift_toggle"
   '';
 
   services.displayManager = {
@@ -163,7 +162,8 @@
     nix-prefetch
     nix-output-monitor
     nix-search-cli
-    nvd cachix
+    nvd
+    cachix
 
     xcolor
     xclip
@@ -184,7 +184,7 @@
     ];
   };
 
-  environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = ["/share/zsh"];
 
   programs.slock.enable = true;
   services.gvfs.enable = true;

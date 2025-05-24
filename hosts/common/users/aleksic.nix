@@ -77,6 +77,9 @@
       docker-compose
       podman-compose
 
+      pandoc
+      texliveSmall
+
       sqlite
       postgresql
 

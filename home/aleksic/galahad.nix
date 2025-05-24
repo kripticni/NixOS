@@ -82,12 +82,13 @@
   ];
 
   home.file = {
-    ".dwm/autostart.sh".source = ../../assets/scripts/autostart.sh;
+    ".dwm/autostart.sh".source = ../../assets/scripts/autostart.sh; # TODO: consider moving this to .config if possible, relies on patch
     ".dwm/bar.sh".source = ../../assets/scripts/bar.sh;
-    ".config/clangd/config.yaml".source = ../../assets/config/clangd/config.yaml;
   };
 
   xdg.configFile = {
+    "clangd/config.yaml".source = ../../assets/config/clangd;
+    "pwn.conf".source = ../../assets/config/pwn.conf;
     "dwm/autostart.sh".source = ../../assets/scripts/autostart.sh;
 
     "Kvantum/Utterly-Nord-Solid-Plasma/Utterly-Nord-Solid".source = "${pkgs.utterly-nord-plasma}/share/Kvantum/Utterly-Nord-Solid/";
