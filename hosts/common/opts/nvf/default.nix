@@ -9,6 +9,7 @@
     enable = true;
     settings = {
       vim = {
+        lsp.enable = true;
         luaConfigPre = ''
           vim.diagnostic.config({virtual_lines = true})
           vim.lsp.inlay_hint.enable(true)
@@ -68,7 +69,6 @@
         filetree.neo-tree.enable = true;
 
         languages = {
-          enableLSP = true;
           enableFormat = true;
           enableTreesitter = true;
           enableExtraDiagnostics = true;

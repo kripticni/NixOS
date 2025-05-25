@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     git
   ];
@@ -9,5 +8,8 @@
 
     userName = "kripticni";
     userEmail = "kripticno@gmail.com";
+    extraConfig = {
+      pull = {rebase = false;};
+    };
   };
 }

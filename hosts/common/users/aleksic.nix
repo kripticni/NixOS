@@ -83,7 +83,7 @@
       sqlite
       postgresql
 
-      nodejs_23
+      nodejs_24
       zulu
 
       octaveFull
