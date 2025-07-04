@@ -24,7 +24,7 @@
     ./common/opts/alacritty
     ./common/opts/zsh
     ./common/opts/brave
-    #./common/opts/syncthing weird idle network behavior
+    #./common/opts/syncthing # weird idle network behavior
     ./common/opts/zathura
     ./common/opts/flameshot
     ./common/opts/ncmpcpp
@@ -43,7 +43,7 @@
     gthumb
 
     nautilus
-    kdePackages.dolphin
+    # kdePackages.dolphin # propages user env packages
 
     obsidian
     libreoffice
@@ -77,8 +77,8 @@
     #ftk imager
     inetutils
     upx
-    #pwntools installing the python module in user also gets us these
-    #checksec
+    # pwntools # installing the python module in user also gets us these
+    # checksec # from pwntools
   ];
 
   home.file = {
