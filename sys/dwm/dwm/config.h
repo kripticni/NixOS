@@ -74,7 +74,7 @@ static const Rule rules[] = {
     {"obs", NULL, NULL, 0, 1, 0, 0, -1},
     {"Lutris", NULL, NULL, 0, 1, 0, 0, -1},
     {"Brave", NULL, NULL, 0, 0, 0, 0, -1},
-    {"Discord", NULL, NULL, 0, 0, 0, 0, -1},
+    {"discord", NULL, NULL, 0, 0, 0, 0, -1},
     {"St", NULL, NULL, 0, 0, 1, 0, -1},
 
     {"Gimp", NULL, NULL, 0, 1, 0, 0, -1},
@@ -138,7 +138,7 @@ static const char *dmenucmd[] = {
 static const char *termcmd[] = {
     "sh", "-c", "alacritty msg create-window || alacritty", NULL};
 static const char *termcmd2[] = {"alacritty", NULL};
-static const char *printscreencmd[] = {"flameshot", "gui", NULL};
+static const char *printscreencmd[] = {"sh", "-c", "pkill -e -f '^flameshot gui$'; sleep 0.2; flameshot gui", NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
@@ -170,7 +170,7 @@ static const Key keys[] = {
     {MODKEY, XK_period, focusmon, {.i = +1}},
     {MODKEY | ShiftMask, XK_comma, tagmon, {.i = -1}},
     {MODKEY | ShiftMask, XK_period, tagmon, {.i = +1}},
-    {0, XK_Print, spawn, {.v = printscreencmd}},
+    {MODKEY, XK_Print, spawn, {.v = printscreencmd}},
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
             TAGKEYS(XK_9, 8){MODKEY | ShiftMask, XK_q, quit, {0}},
