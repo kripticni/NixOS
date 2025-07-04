@@ -27,6 +27,7 @@
   ];
 
   boot.supportedFilesystems = ["ntfs"];
+  boot.kernelParams = [ "mds=nosmt" ]; # default mitigation for MDS leaks
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
@@ -41,9 +42,9 @@
     };
   };
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
+  hardware.bluetooth.enable = false; # continues to be not needed as of now
+  hardware.bluetooth.powerOnBoot = false;
+  services.blueman.enable = false; 
 
   hardware.graphics = {
     # opengl
@@ -144,14 +145,14 @@
     kdePackages.qtstyleplugin-kvantum
     kdePackages.breeze-icons
     kdePackages.qtsvg
-    kdePackages.libplasma
+    # kdePackages.libplasma # pulls kwallet 
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
     libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
     libsForQt5.qt5.qtsvg
-    libsForQt5.dolphin
     qt5.full
+    qtcreator
 
     gtk4
     gtk3
@@ -162,6 +163,7 @@
     nix-prefetch
     nix-output-monitor
     nix-search-cli
+    nix-index
     nvd
     cachix
 
@@ -171,6 +173,8 @@
     gnome-remote-desktop
     openssh
     openssl
+
+    librsvg
   ];
 
   environment.sessionVariables = rec {
