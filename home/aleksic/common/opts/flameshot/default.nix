@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   services.flameshot = {
-    enable = false;
+    enable = true;
     settings = {
       General = {
         showStartupLaunchMessage = false;
