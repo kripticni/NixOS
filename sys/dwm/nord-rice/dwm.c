@@ -1885,7 +1885,14 @@ void setcurrentdesktop(void) {
 }
 void setdesktopnames(void) {
   XTextProperty text;
-  Xutf8TextListToTextProperty(dpy, tags, TAGSLENGTH, XUTF8StringStyle, &text);
+  static int flag_init = 0;
+  static char *taglist[TAGSLENGTH];
+  if(!flag_init){
+    for (int i = 0; i < TAGSLENGTH; i++)
+      taglist[i] = tags[i];
+    flag_init = 1;
+  }
+  Xutf8TextListToTextProperty(dpy, taglist, TAGSLENGTH, XUTF8StringStyle, &text);
   XSetTextProperty(dpy, root, &text, netatom[NetDesktopNames]);
 }
 
