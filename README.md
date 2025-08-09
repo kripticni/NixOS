@@ -8,7 +8,16 @@ no maintainance or upgrading. Focuses on a stable
 text editor with supports for lsp, linters, and  
 everything along, and tooling for hacking.
 
+And it has also been a great resource for me to learn  
+more about hardware configuration, bootloaders, kernel  
+configurations, torification, mining, graphic desing,
+and the list truly goes on...
+
 # Versions
+
+The system has been continually maturing alongside me  
+and my journey according to my needs, these are just  
+the certain states of it I'd like to capture.
 
 ## Experimental
 
@@ -18,7 +27,7 @@ functional programming paradigm.
 Was mainly a single file configuration with no modularity.
 
 ### Lavender
-![First Experimental Version](./assets/images/first-rice.jpg)
+![First Experimental Version](./assets/readme/first-rice.jpg)
 
 ## Heavily Riced
 
@@ -27,7 +36,7 @@ a pretty looking system. Here everything got modularized
 expanded, turned into flakes and improved upon.
 
 ### Nord
-![Heavy Rice Version]
+![Heavy Rice Version](./assets/readme/nord-rice.png)
 
 ## Final Minimalist
 
@@ -38,9 +47,23 @@ stripped away, and supports for lots of languages and tooling
 got implemented along the way, as well as custom configurations  
 for basically any application I was using, or even service and daemon.
 It also served as to mine Monero XMR, and host a Tor node.
+And within this time I've competed at the national competitive  
+programming competition and created my own colorscheme.
 
-### Nord
-![Latest Minimalist Version](./assets/images/nixos-minimalist.png)
+### Nord & Custom Scheme
+![Latest Minimalist Version](./assets/readme/nixos-minimalist.png)
+
+## Extra
+
+These are things that haven't really changed  
+throught time, except for plymouth which is  
+why it isnt here.
+
+### Lockscreen
+![Lockscreen](./assets/readme/lockscreen.jpg)
+
+### Bootloader
+![Bootloader](./assets/readme/bootloader.jpg)
 
 # Conclusion
 
