@@ -27,7 +27,8 @@ functional programming paradigm.
 Was mainly a single file configuration with no modularity.
 
 ### Lavender
-![First Experimental Version](./assets/readme/first-rice.jpg)
+<img src="./assets/readme/first-rice.jpg" style="transform: rotate(90deg);">
+<!-- ![First Experimental Version](./assets/readme/first-rice.jpg) -->
 
 ## Heavily Riced
 
