@@ -4,7 +4,7 @@ Meant to be the all-stable system that will always
 work on boot and always allow me to do my work with  
 no maintainance or upgrading.
 
-![Latest Minimalist Version](./images/nixos-minimalist.png)
+![Latest Minimalist Version](./assets/images/nixos-minimalist.png)
 
 This has been my production system for a long time,  
 it has served well to learn a couple things but I  
